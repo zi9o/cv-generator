@@ -13,6 +13,24 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+
+
+Route::group(array('prefix' => 'cv'), function()
+{
+	Route::resource('/', 'CvController');
+	Route::resource('/formation', 'FormationController') ;
+	Route::resource('/competence', 'CompetenceController') ;
+	// nawal
+	Route::resource('/experience', 'ExperienceController') ;
+	Route::resource('/loisir', 'LoisirController') ;
+	Route::resource('/langue', 'LangueController') ;
+
+	// connexion
+
+
+});
+
+
 Route::get('auth/login', [
 	'uses' => 'Auth\AuthController@getLogin',
 	'as' => 'login'
