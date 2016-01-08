@@ -2,43 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\CvRepository;
-use App\Repositories\FormationRepository;
 use App\Repositories\EtablissementRepository;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\Formation;
-class FormationController extends Controller
+
+class EtablissementController extends Controller
 {
     /**
-     * The CvRepository instance.
+     * The etablissementRepository instance.
      *
-     * @var App\Repositories\CvRepository
+     * @var App\Repositories\etablissementRepository
      */ 
-    protected $formation_gestion;
+    protected $etablissement_gestion;
 
-    /**
-     * The EtudiantRepository instance.
-     *
-     * @var App\Repositories\EtudiantRepository
-     *
-     */
-    protected $cv_gestion;
-
-    
     /*
-     * Create a new CvController instance.
+     * Create a new etablissementController instance.
      *
-     * @param  App\Repositories\CvRepository $formation_gestion
-     * @param  App\Repositories\EtudiantRepository $cv_gestion
+     * @param  App\Repositories\etablissementRepository $etablissement_gestion
      * @return void
      */
-    public function __construct(FormationRepository $formation_gestion, CvRepository $cv_gestion)
+    public function __construct(EtablissementRepository $etablissement_gestion)
     {
-        $this->formation_gestion = $formation_gestion;
-        $this->cv_gestion = $cv_gestion;
+        $this->etablissement_gestion = $etablissement_gestion;
     }
 
     /**
@@ -48,8 +34,7 @@ class FormationController extends Controller
      */
     public function index()
     {
-        $cvs = $this->formation_gestion->index(3); 
-        return $cvs;
+        return $this->etablissement_gestion->all();
     }
 
     /**
@@ -70,9 +55,8 @@ class FormationController extends Controller
      */
     public function store(Request $request)
     {
-        $formation = $this->formation_gestion->store($request->all());
-
-        return $formation;
+        $etablissement = $this->etablissement_gestion->store($request->all());
+        return $etablissement;
     }
 
     /**
@@ -83,7 +67,7 @@ class FormationController extends Controller
      */
     public function show($id)
     {
-        return Formation::findOrFail($id);
+        return $this->etablissement_gestion->getById($id);
     }
 
     /**
@@ -106,9 +90,8 @@ class FormationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $formation = $this->formation_gestion->update($request->all(), $id);
-
-        return $formation;
+        $etablissement = $this->etablissement_gestion->update($request->all(), $id);
+        return $etablissement;
     }
 
     /**
@@ -119,6 +102,6 @@ class FormationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return $this->etablissement_gestion->destroy($id);
     }
 }

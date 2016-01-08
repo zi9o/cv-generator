@@ -40,11 +40,11 @@ class EtudiantRepository extends BaseRepository
 	 */
   	private function save($etudiant, $inputs)
 	{
-		$this->filiere = Filiere::find(intval('filiere'));
-
+		
 		if ($inputs['cne'] != null) {
 			$etudiant->cne = $inputs['cne'];
 		}
+
 		$etudiant->email = $inputs['email'];
 		$etudiant->nom = $inputs['nom'];
 		$etudiant->prenom = $inputs['prenom'];
@@ -54,7 +54,8 @@ class EtudiantRepository extends BaseRepository
 		$etudiant->prenom = $inputs['situation'];
 		$etudiant->adresse = $inputs['adresse'];
 
-		if($this->filiere->id != null))) {
+		$this->filiere = Filiere::find(intval($inputs['filiere']));
+		if($this->filiere != null) {
 			$etudiant->filiere_id = $this->filiere->id;
 			$etudiant->filiere = $this->filiere ;
 		} 
@@ -72,15 +73,12 @@ class EtudiantRepository extends BaseRepository
 	 */
 	public function index($n, $filiere)
 	{
-		if($role != 'all')
+		if($filiere != 'all')
 		{
-			return $this->model
-			->with('filiere')
-			->whereHas('filiere', function($f) use ($filiere) {
+			return $this->model->with('filiere')->whereHas('filiere', function($f) use ($filiere) 
+			{
 				$f->whereSlug($filiere); // filtrer par filière
-			})
-			
-			->paginate($n);			
+			})->paginate($n);			
 		}
 
 		return $this->model ->with('filiere')->paginate($n);
@@ -98,7 +96,7 @@ class EtudiantRepository extends BaseRepository
 	{
 		$etudiant = new $this->model;
 		
-		$this->save($user, $inputs);
+		$this->save($etudiant, $inputs);
 
 		return $etudiant;
 	}
@@ -110,9 +108,11 @@ class EtudiantRepository extends BaseRepository
 	 * @param  App\Models\Etudiant $etudiant
 	 * @return void
 	 */
-	public function update($inputs, $etudiants)
+	public function update($inputs, $etudiant)
 	{	
 		$this->save($etudiant, $inputs);
+
+		return $etudiant;
 	}
 
 
@@ -122,12 +122,12 @@ class EtudiantRepository extends BaseRepository
 	 * @param  App\Models\Etudiant $etudiant
 	 * @return void
 	 */
-	public function destroy(User $etudiant)
-	{
-		$etudiant->cvs()->delete();
+	// public function destroy(Etudiant $etudiant)
+	// {
+	// 	$etudiant->cvs()->delete();
 			
-		$etudiant->delete();
-	}
+	// 	$etudiant->delete();
+	// }
 
 	
 }

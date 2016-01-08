@@ -3,12 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Cv;
-use App\Models\Competence;
-use App\Models\Formation;
-use App\Models\Experience;
-use App\Models\Loisir;
-use App\Models\Langue;
-
+use App\Models\Etudiant;
 
 class CvRepository extends BaseRepository {
 
@@ -25,7 +20,7 @@ class CvRepository extends BaseRepository {
     /**
      * Create a new CvRepository instance.
      *
-     * @param  App\Models\Post $post
+     * @param  App\Models\cv $cv
      * @param  App\Models\Tag $tag
      * @param  App\Models\Comment $comment
      * @return void
@@ -38,26 +33,29 @@ class CvRepository extends BaseRepository {
     }
 
     /**
-     * Create or update a post.
+     * Create or update a cv.
      *
-     * @param  App\Models\Post $post
+     * @param  App\Models\cv $cv
      * @param  array  $inputs
      * @param  bool   $user_id
-     * @return App\Models\Post
+     * @return App\Models\cv
      */
-    private function saveCv($cv, $inputs, $etudiant_id = null)
+    public function save($inputs)
     {
-        $cv->nom_cv = $inputs['nomcv'];
-        $cv->lienVideo = $inputs['lienVideo'];
-        if ($etudiant_id != null) {
-            $cv->etudiant_id = $etudiant_id;
-        }
-        $cv->save();
-        return $cv;
+        $this->model->nom_cv = $inputs['nomcv'];
+        $this->model->lienVideo = $inputs['lienVideo'];
+        $this->etudiant = Etudiant::find(intval($inputs['etudiant']));
+        if($this->etudiant != null) {
+            $this->model->etudiant_id = $this->etudiant->id;
+        } 
+        
+        $this->model->save();
+
+        return $this->model;
     }
 
     /**
-     * Create a query for Post.
+     * Create a query for cv.
      *
      * @return Illuminate\Database\Eloquent\Builder
      */
@@ -71,7 +69,7 @@ class CvRepository extends BaseRepository {
     }
 
     /**
-     * Get post collection.
+     * Get cv collection.
      *
      * @param  int  $n
      * @return Illuminate\Support\Collection
@@ -84,7 +82,7 @@ class CvRepository extends BaseRepository {
     }
 
     /**
-     * Get post collection.
+     * Get cv collection.
      *
      * @param  int  $n
      * @param  int  $id
@@ -119,7 +117,7 @@ class CvRepository extends BaseRepository {
     }
 
     /**
-     * Get post collection.
+     * Get cv collection.
      *
      * @param  int     $n
      * @param  int     $user_id
@@ -127,60 +125,59 @@ class CvRepository extends BaseRepository {
      * @param  string  $direction
      * @return Illuminate\Support\Collection
      */
-    public function index($n, $user_id = null, $orderby = 'created_at', $direction = 'desc')
+    public function index($n, $user_id = null)
     {
         $query = $this->model
-                ->select('posts.id', 'posts.created_at', 'title', 'posts.seen', 'active', 'user_id', 'slug', 'username')
-                ->join('users', 'users.id', '=', 'posts.user_id')
-                ->orderBy($orderby, $direction);
+                ->select('cvs.id', 'cvs.lienVideo', 'cvs.created_at', 'cvs.nom_cv', 'cvs.etudiant_id')
+                ->join('etudiants', 'etudiants.id', '=', 'cvs.etudiant_id');
 
         if ($user_id) {
-            $query->where('user_id', $user_id);
+            $query->where('etudiant_id', $user_id);
         }
 
         return $query->paginate($n);
     }
 
     /**
-     * Get post collection.
+     * Get cv collection.
      *
      * @param  string  $slug
      * @return array
      */
     public function show($slug)
     {
-        $post = $this->model->with('user', 'tags')->whereSlug($slug)->firstOrFail();
+        $cv = $this->model->with('user', 'tags')->whereSlug($slug)->firstOrFail();
 
         $comments = $this->comment
-                ->wherePost_id($post->id)
+                ->wherecv_id($this->model->id)
                 ->with('user')
                 ->whereHas('user', function($q) {
                     $q->whereValid(true);
                 })
                 ->get();
 
-        return compact('post', 'comments');
+        return compact('cv', 'comments');
     }
 
     /**
-     * Get post collection.
+     * Get cv collection.
      *
-     * @param  App\Models\Post $post
+     * @param  App\Models\cv $cv
      * @return array
      */
-    public function edit($post)
+    public function edit($cv)
     {
         $tags = [];
 
-        foreach ($post->tags as $tag) {
+        foreach ($this->model->tags as $tag) {
             array_push($tags, $tag->tag);
         }
 
-        return compact('post', 'tags');
+        return compact('cv', 'tags');
     }
 
     /**
-     * Get post collection.
+     * Get cv collection.
      *
      * @param  int  $id
      * @return array
@@ -190,39 +187,9 @@ class CvRepository extends BaseRepository {
         return $this->model->with('tags')->findOrFail($id);
     }
 
+    
     /**
-     * Update a post.
-     *
-     * @param  array  $inputs
-     * @param  App\Models\Post $post
-     * @return void
-     */
-    public function update($inputs, $post)
-    {
-        $post = $this->savePost($post, $inputs);
-
-        // Tag gestion
-        $tags_id = [];
-        if (array_key_exists('tags', $inputs) && $inputs['tags'] != '') {
-
-            $tags = explode(',', $inputs['tags']);
-
-            foreach ($tags as $tag) {
-                $tag_ref = $this->tag->whereTag($tag)->first();
-                if (is_null($tag_ref)) {
-                    $tag_ref = new $this->tag();
-                    $tag_ref->tag = $tag;
-                    $tag_ref->save();
-                }
-                array_push($tags_id, $tag_ref->id);
-            }
-        }
-
-        $post->tags()->sync($tags_id);
-    }
-
-    /**
-     * Update "seen" in post.
+     * Update "seen" in cv.
      *
      * @param  array  $inputs
      * @param  int    $id
@@ -230,15 +197,15 @@ class CvRepository extends BaseRepository {
      */
     public function updateSeen($inputs, $id)
     {
-        $post = $this->getById($id);
+        $cv = $this->getById($id);
 
-        $post->seen = $inputs['seen'] == 'true';
+        $this->model->seen = $inputs['seen'] == 'true';
 
-        $post->save();
+        $this->model->save();
     }
 
     /**
-     * Update "active" in post.
+     * Update "active" in cv.
      *
      * @param  array  $inputs
      * @param  int    $id
@@ -246,68 +213,33 @@ class CvRepository extends BaseRepository {
      */
     public function updateActive($inputs, $id)
     {
-        $post = $this->getById($id);
+        $cv = $this->getById($id);
 
-        $post->active = $inputs['active'] == 'true';
+        $this->model->active = $inputs['active'] == 'true';
 
-        $post->save();
+        $this->model->save();
     }
-
     /**
-     * Create a post.
+     * Destroy a cv.
      *
-     * @param  array  $inputs
-     * @param  int    $user_id
+     * @param  App\Models\cv $cv
      * @return void
      */
-    public function store($inputs, $user_id)
-    {
-        $cv = new $this->model;
-        $cv->created_at = date("F j, Y, g:i a");
+    // public function destroy($cv) {
+    //     $this->model->tags()->detach();
 
-        $post = $this->savePost(, $inputs, $user_id);
-
-        // Tags gestion
-        if (array_key_exists('tags', $inputs) && $inputs['tags'] != '') {
-
-            $tags = explode(',', $inputs['tags']);
-
-            foreach ($tags as $tag) {
-                $tag_ref = $this->tag->whereTag($tag)->first();
-                if (is_null($tag_ref)) {
-                    $tag_ref = new $this->tag();
-                    $tag_ref->tag = $tag;
-                    $post->tags()->save($tag_ref);
-                } else {
-                    $post->tags()->attach($tag_ref->id);
-                }
-            }
-        }
-
-        // Maybe purge orphan tags...
-    }
+    //     $this->model->delete();
+    // }
 
     /**
-     * Destroy a post.
-     *
-     * @param  App\Models\Post $post
-     * @return void
-     */
-    public function destroy($post) {
-        $post->tags()->detach();
-
-        $post->delete();
-    }
-
-    /**
-     * Get post slug.
+     * Get cv slug.
      *
      * @param  int  $comment_id
      * @return string
      */
     public function getSlug($comment_id)
     {
-        return $this->comment->findOrFail($comment_id)->post->slug;
+        return $this->comment->findOrFail($comment_id)->cv->slug;
     }
 
     /**
