@@ -1,6 +1,6 @@
 ## les routes
 
-###Method		   	URL		     		Action
+	Method		   	URL		     		Action
 									
    	GET			   	/cv           		Liste des cv
    
@@ -65,7 +65,7 @@
 	GET				/etudiant/filiere/{id}           	listes des étudiants d'une filière 
 
 	GET			 	/etudiant/{id}                   Obténir un étudiant 
-	
+
 ## Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
