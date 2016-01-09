@@ -1,6 +1,6 @@
 ## les routes
 
-####	Method		   	URL		     							Action
+	Method		   	URL		     							Action
 									
    	GET			   	/cv           							Liste des cv
    
