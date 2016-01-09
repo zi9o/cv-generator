@@ -1,107 +1,8 @@
 
-## Les urls formalisés
-
-
-	Method      	  	URI     					   Nom          				Action
-
-	POST         		/cv                     	   cv.store  
-
-	GET|HEAD		    /cv                      	   cv.index     
-
-	GET|HEAD          	/cv/create               	   cv.create             	
-
-	PUT|PATH			/cv/{id}                	   cv.update          	   
-
-	GET|HEAD  	     	/cv/{id}                 	   cv.show             
-	
-	DELETE       		/cv/{id}                       cv.destroy               
-
-	GET|HEAD  			/cv/{id}/edit           	   cv.edit                  
-	
-	POST         		/etablissement           	   etablissement.store      
-
-	GET|HEAD		    /etablissement        		   etablissement.index      
-
-	GET|HEAD		    /etablissement/create 		   etablissement.create     
-
-	PUT|PATH           	/etablissement/{id}   		   etablissement.update     
-
-	GET|HEAD          	/etablissement/{id}   		   etablissement.show       
-
-	DELETE       		/etablissement/{id}    		   etablissement.destroy    
-
-	GET|HEAD          	/etablissement/{id}/edit 	   etablissement.edit       
-
-	POST         		/formation                     formation.store          
-
-	GET|HEAD          	/formation                     formation.index         
-
-	GET|HEAD          	/formation/create              formation.create        
-
-	DELETE       		/formation/{id}                formation.destroy       
-
-	PUT|PATH           	/formation/{id}                formation.update         
-
-	GET|HEAD          	/formation/{id}                formation.show           
-
-	GET|HEAD          	/formation/{id}/edit           formation.edit          
-
-	POST         	    /competence              	   competence.store 
-
-	GET|HEAD          	/competence                    competence.index   
-
-	GET|HEAD          	/competence/create             competence.create 
-
-	PUT|PATH		    /competence/{id}               competence.update      	 
-
-	DELETE       		/competence/{id}        	   competence.destroy      
-
-	GET|HEAD 	    	/competence/{id}        	   competence.show  
-
-	POST         		/experience                    experience.store         
-
-	GET|HEAD          	/experience                    experience.index         
-
-	GET|HEAD          	/experience/create             experience.create        
-
-	DELETE       		/experience/{id}               experience.destroy       
-
-	GET|HEAD          	/experience/{id}               experience.show          
-
-	PUT|PATH           	/experience/{id}               experience.update        
-
-	GET|HEAD          	/experience/{id}/edit          experience.edit          
-
-	GET|HEAD          	/langue                        langue.index             
-
-	POST         		/langue                        langue.store             
-
-	GET|HEAD          	/langue/create                 langue.create            
-
-	GET|HEAD          	/langue/{langue}               langue.show              
-
-	PUT|PATH           	langue/{langue}                langue.update            
-
-	DELETE       		/langue/{langue}               langue.destroy           
-
-	GET|HEAD          	langue/{langue}/edit           langue.edit              
-
-	GET|HEAD          	/loisir                        loisir.index             
-
-	POST         		/loisir                        loisir.store             
-
-	GET|HEAD          	/loisir/{loisir}               loisir.show              
-
-	PUT|PATH           	/loisir/{loisir}               loisir.update            
-
-	DELETE       		/loisir/{loisir}               loisir.destroy           
-
-	GET|HEAD          	/loisir/{loisir}/edit          loisir.edit              
-
 ## les routes
 
-<h1>	Method      	    URI     				  Nom          				Action </h1>
-
+	Method      	    URI     				  Nom          				Action 
+	
 	GET|HEAD    		api/etudiant                            api.etudiant..index               liste de étudiants avec ses cv
 
 	POST 				api/etudiant                            api.etudiant..store               ajout d'un nouveau étudiant
@@ -213,6 +114,8 @@
 	GET|HEAD 			api/etudiant/{id}                         api.etudiant.show                otention de l'etudiant de l'{id}
 
 	GET|HEAD  			api/etudiant/{id}/edit                    api.etudiant.edit                formulaire de modification de l'etudiant de l' {id}
+
+	GET|HEAD  			api/etudiant/filiere/{id}                 filiere.etudiants           liste des etudiants d'une filière avec leurs cv
 
 <!-- ## les routes
 

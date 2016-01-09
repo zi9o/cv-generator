@@ -20,6 +20,10 @@ Route::group (['prefix' =>  'api'], function ()
 	Route::resource('etudiant', 'EtudiantController');
 	Route::group(['prefix' =>  'etudiant'], function (){
 		Route::resource('cv', 'CvController');
+		Route::get('filiere/{id}', [
+			'uses' => 'EtudiantController@etudiantsfiliere',
+			'as' => 'filiere.etudiants'
+		])->where('id', '[0-9]+');
 		Route::group (['prefix' =>  'cv'], function ()
 		{
 			// Route::get('/etudiant/{id}', 'CvController@');

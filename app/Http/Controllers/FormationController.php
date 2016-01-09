@@ -119,6 +119,6 @@ class FormationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return $this->formation_gestion->destroy($id);
     }
 }

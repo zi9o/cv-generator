@@ -33,7 +33,7 @@ class EtudiantController extends Controller
         $this->etudiant_gestion = $etudiant_gestion;
         $this->filiere_gestion = $filiere_gestion;
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -41,7 +41,7 @@ class EtudiantController extends Controller
      */
     public function index()
     {
-        return $this->etudiant_gestion->index(5);
+        return $this->etudiant_gestion->index();
     }
 
     /**
@@ -88,7 +88,7 @@ class EtudiantController extends Controller
      */
     public function show($id)
     {
-        $etudiant = Etudiant::findOrFail($id);
+        $etudiant = $this->etudiant_gestion->getCvsEtudiant($id);
         return $etudiant;
     }
 
@@ -130,6 +130,6 @@ class EtudiantController extends Controller
 
     public function etudiantsfiliere($id)
     {
-        return $this->etudiant_gestion->index(5, $id);
+        return $this->etudiant_gestion->index($id);
     }
 }

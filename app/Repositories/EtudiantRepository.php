@@ -4,7 +4,8 @@ namespace App\Repositories;
 
 use App\Models\Etudiant;
 use App\Models\Filiere;
-
+use App\Models\Cv;
+use DB;
 
 class EtudiantRepository extends BaseRepository
 {
@@ -84,48 +85,19 @@ class EtudiantRepository extends BaseRepository
 	// 	return $this->model ->with('filiere')->paginate($n);
 	// }
 
-	public function index($n, $filiere_id = null)
+	public function index($filiere_id = null)
     {
-        $query = $this->model->select
-                (
-                		 'etudiants.id', 
-                		 'etudiants.cne', 
-                		 'etudiants.nom', 
-                		 'etudiants.prenom', 
-                		 'etudiants.dateNaissance', 
-                		 'etudiants.situation', 
-                		 'etudiants.adresse', 
-                		 'etudiants.telephone', 
-                		 'etudiants.filiere_id'
-
-
-               )->join('filieres', 'filieres.id', '=', 'etudiants.filiere_id');
-
+        $etudiants = DB::table('etudiants');
         if ($filiere_id) {
-            $query->where('filiere_id', $filiere_id);
+            $etudiants->where('filiere_id', $filiere_id);
         }
 
-        $var = $query->paginate($n);
-
-        foreach ($var as $value) {
-        	$this->filiere = Filiere::find($value->filiere_id);
-	        $etudiant[] = [
-	        			    "id"=>$value->id,
-	                        "cne"=>$value->cne,
-	                        "nom"=>$value->nom,
-	                        "prenom"=>$value->prenom,
-	                        "dateNaissance"=>$value->dateNaissance,
-	                        "photo"=>$value->photo,
-	                        "telephone"=>$value->telephone,
-	                        "situation"=>$value->situation,
-	                        "adresse"=>$value->adresse,
-	                        "filiere"=>$this->filiere
-	        		
-	        ];
-
+        $etudiants = $etudiants->get();
+        foreach ($etudiants as $etudiant) {
+            $cvs[] = $this->getCvsEtudiant($etudiant->id);
         }
         
-        return ["etudiants"=>$etudiant];
+        return ['etudiants' => $cvs];
     }
 
 	/**
@@ -204,4 +176,63 @@ class EtudiantRepository extends BaseRepository
     }
 
 	
+	public function getcv($id)
+    {
+        $var = Cv::find($id);  
+
+        if (empty($var)) {
+            return array();
+        }
+
+        $cv = [   
+        			"id"=>$var->id,
+                    "nomcv"=>$var->nom_cv,
+                    "lienVideo"=>$var->lienVideo,
+                    "loisirs" =>$var->loisirs,
+                    "competences" =>$var->competences,
+                    "formations" =>$var->formations,
+                    "langues" =>$var->langues,
+                    "loisirs" =>$var->loisirs,
+             ] ;
+
+        return $cv;
+    }
+
+    public function getCvsEtudiant($id)
+    {
+        $var = Etudiant::find($id);  
+
+        if (empty($var)) {
+            return array();
+        }
+
+        $query = DB::table('etudiants')
+            ->join('cvs', 'etudiants.id', '=', 'cvs.etudiant_id')
+            ->where('cvs.etudiant_id', $var->id)
+            ->select('cvs.id')
+            ->get();
+
+        
+        $cv = array();
+        foreach ($query as $value) {
+            $cv[] = $this->getcv($value->id);
+        }
+        $this->filiere = Filiere::find($var->filiere_id);
+        $etudiant = [
+                    "id"=>$var->id,
+                    "cne"=>$var->cne,
+                    "nom"=>$var->nom,
+                    "prenom"=>$var->prenom,
+                    "dateNaissance"=>$var->dateNaissance,
+                    "photo"=>$var->photo,
+                    "telephone"=>$var->telephone,
+                    "situation"=>$var->situation,
+                    "adresse"=>$var->adresse,
+                    "filiere"=>$this->filiere,
+                    "cv" => $cv
+        ];
+
+        return ["etudiant" => $etudiant];
+    }
+
 }
