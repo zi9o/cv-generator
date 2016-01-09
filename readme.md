@@ -1,70 +1,69 @@
 ## les routes
 
-	Method		   	URL		     		Action
+####	Method		   	URL		     							Action
 									
-   	GET			   	/cv           		Liste des cv
+   	GET			   	/cv           							Liste des cv
    
-   	GET		 		/cv/{id}            Recupere le cv de l'id {id}
+   	GET		 		/cv/{id}            					Recupere le cv de l'id {id}
 
  
- 	GET   			/cv/create      	Pour obtenir le formulaire de création d'un cv
+ 	GET   			/cv/create      						Pour obtenir le formulaire de création d'un cv
 
-	POST     		/cv/create     		Pour créer un cv 
+	POST     		/cv/create     							Pour créer un cv 
 
-	POST     		/cv/delete      	Pour supprimer un cv
+	POST     		/cv/delete      						Pour supprimer un cv
 
-	POST     		/cv/edit 			Pour modifier un cv
+	POST     		/cv/edit 								Pour modifier un cv
 
-	GET				/cv/edit/{id}   	Pour obtenir le formulaire de modification d'un cv
+	GET				/cv/edit/{id}   						Pour obtenir le formulaire de modification d'un cv
 
-	GET				/cv/etudiant/{id}   liste des cvs d'un etudiant
+	GET				/cv/etudiant/{id}   					liste des cvs d'un etudiant
 
-	GET|HEAD 		/cv/formation        	listes des formations d'un cv
+	GET|HEAD 		/cv/formation        					listes des formations d'un cv
 
-	POST    	    /cv/formation/create 	créer une formation pour un cv
+	POST    	    /cv/formation/create 					créer une formation pour un cv
 
+	GET				/cv/formation/create 					obtenir le formulaire de création d'une formation
 
-	GET				/cv/formation/create 	obtenir le formulaire de création d'une formation
+	POST  			/cv/formation/delete 					delete-formation
 
-	POST  			/cv/formation/delete 	delete-formation
+	POST     		/cv/formation/edit 						edit-formation  
 
-	POST     		/cv/formation/edit 		edit-formation  
+	GET				/cv/formation/edit/{id} 				edit-formation  
 
-	GET				/cv/formation/edit/{id} edit-formation  
+	GET				/cv/formation/etablissement/{id} 		formations-etablissement
 
-	GET				/cv/formation/etablissement/{id} 	formations-etablissement
+	GET				/cv/formation/{id}               		show-formation/  
 
-	GET				/cv/formation/{id}               	show-formation/  
+	GET				/etablissement                   		etablissement  
 
-	GET				/etablissement                   	etablissement  
+	POST    		/etablissement/create 					create-etab 
 
-	POST    		/etablissement/create 				create-etab 
+	GET|HEAD 		/etablissement/create            		create-etab 
 
-	GET|HEAD 		/etablissement/create            	create-etab 
+	POST     		/etablissement/delete        			delete-etab 
 
-	POST     		/etablissement/delete        		delete-etab 
+	POST     		/etablissement/edit 					edit-etab 
 
-	POST     		/etablissement/edit 				edit-etab 
+	GET|HEAD		/etablissement/edit/{id}         		edit-etab 
 
-	GET|HEAD		/etablissement/edit/{id}         	edit-etab 
+	GET|HEAD 		/etablissement/{id}              		show-etab
 
-	GET|HEAD 		/etablissement/{id}              	show-etab
+	GET|HEAD 		/etudiant                        		liste des etudiants     
 
-	GET|HEAD 		/etudiant                        	liste des etudiants     
+	POST   			/etudiant/create                 		formulaire de création d'un etudiant
 
-	POST   			/etudiant/create                 	formulaire de création d'un etudiant
+	GET				/etudiant/create                    	create-etudiant 
 
-	GET				/etudiant/create                    create-etudiant 
+	POST     		/etudiant/delete  						delete-etudiant 
 
-	POST     		/etudiant/delete  					delete-etudiant 
+	POST    		/etudiant/edit          				edit-etudiant 
 
-	POST    		/etudiant/edit          			edit-etudiant 
+	GET 			/etudiant/edit/{id}              		formulaire de modification d'un etudiant
 
-	GET 			/etudiant/edit/{id}              	formulaire de modification d'un etudiant
+	GET				/etudiant/filiere/{id}           		listes des étudiants d'une filière 
 
-	GET				/etudiant/filiere/{id}           	listes des étudiants d'une filière 
-
-	GET			 	/etudiant/{id}                   Obténir un étudiant 
+	GET			 	/etudiant/{id}                   		Obténir un étudiant 
 
 ## Laravel PHP Framework
 
