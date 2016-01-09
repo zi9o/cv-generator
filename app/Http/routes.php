@@ -17,11 +17,11 @@
 
 Route::group (['prefix' =>  'api'], function ()
 {
+	Route::resource('etudiant', 'EtudiantController');
 	Route::group(['prefix' =>  'etudiant'], function (){
-		Route::resource('', 'EtudiantController');
+		Route::resource('cv', 'CvController');
 		Route::group (['prefix' =>  'cv'], function ()
 		{
-			Route::resource('', 'CvController');
 			// Route::get('/etudiant/{id}', 'CvController@');
 			// Route::get('/', 'CvController');
 			Route::resource('formation', 'FormationController') ;

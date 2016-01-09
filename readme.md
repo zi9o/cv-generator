@@ -101,49 +101,49 @@
 ## les routes
 
 
- GET|HEAD    api/etudiant                                         api.etudiant..index                     App\Http\Controllers\EtudiantController@index
+	GET|HEAD    			api/etudiant                api.etudiant..index                    liste de étudiants avec ses cv
 
- POST        api/etudiant                                         api.etudiant..store                     App\Http\Controllers\EtudiantController@store
+	POST 					api/etudiant                api.etudiant..store                    ajout d'un nouveau étudiant
 
- GET|HEAD    api/etudiant/create                                  api.etudiant..create                    App\Http\Controllers\EtudiantController@create
+	GET|HEAD    			api/etudiant/create         api.etudiant..create                    formulaire de création d'un étudiant
 
- POST        api/etudiant/cv                                      api.etudiant.cv..store                  App\Http\Controllers\CvController@store
+	POST        			api/etudiant/cv             api.etudiant.cv..store                	   création d'un nouveau cv
 
- GET|HEAD    api/etudiant/cv                                      api.etudiant.cv..index                  App\Http\Controllers\CvController@index
+	GET|HEAD    			api/etudiant/cv              api.etudiant.cv..index                   rien
 
- POST        api/etudiant/cv/competence                           api.etudiant.cv.competence.store        App\Http\Controllers\CompetenceController@store
+	POST        			api/etudiant/cv/competence   api.etudiant.cv.competence.store        			création d'une nouvelle competence
 
- GET|HEAD    api/etudiant/cv/competence                           api.etudiant.cv.competence.index        App\Http\Controllers\CompetenceController@index
+	GET|HEAD    			api/etudiant/cv/competence   api.etudiant.cv.competence.index        			rien
 
- GET|HEAD    api/etudiant/cv/competence/create                    api.etudiant.cv.competence.create       App\Http\Controllers\CompetenceController@create
+	GET|HEAD    			api/etudiant/cv/competence/create       api.etudiant.cv.competence.create       formulaire de création d'une competence
 
- DELETE      api/etudiant/cv/competence/{competence}              api.etudiant.cv.competence.destroy      App\Http\Controllers\CompetenceController@destroy
+	DELETE      			api/etudiant/cv/competence/{id}        	api.etudiant.cv.competence.destroy      suppression de la compétence de l' {id}
 
- PUT|PATCH   api/etudiant/cv/competence/{competence}              api.etudiant.cv.competence.update       App\Http\Controllers\CompetenceController@update
+	PUT|PATCH   			api/etudiant/cv/competence/{id}      	api.etudiant.cv.competence.update       modification de la compétence de l' {id}
 
- GET|HEAD    api/etudiant/cv/competence/{competence}              api.etudiant.cv.competence.show         App\Http\Controllers\CompetenceController@show
+	GET|HEAD    			api/etudiant/cv/competence/{id}         api.etudiant.cv.competence.show         obtenir la compétence de l' {id}
 
- GET|HEAD    api/etudiant/cv/competence/{competence}/edit         api.etudiant.cv.competence.edit         App\Http\Controllers\CompetenceController@edit
+	GET|HEAD    			api/etudiant/cv/competence/{id}/edit    api.etudiant.cv.competence.edit         formulaire de modification de la compétence de l' {id}
 
- GET|HEAD    api/etudiant/cv/create                               api.etudiant.cv..create                 App\Http\Controllers\CvController@create
+	GET|HEAD    			api/etudiant/cv/create                  api.etudiant.cv..create                 formulaire de création d'un cv
 
- POST        api/etudiant/cv/etablissement                        api.etudiant.cv.etablissement.store     App\Http\Controllers\EtablissementController@store
+	POST        			api/etudiant/cv/etablissement            api.etudiant.cv.etablissement.store     création d'un nouveau etablissement
 
- GET|HEAD    api/etudiant/cv/etablissement                        api.etudiant.cv.etablissement.index     App\Http\Controllers\EtablissementController@index
+	GET|HEAD    			api/etudiant/cv/etablissement            api.etudiant.cv.etablissement.index     rien
 
- GET|HEAD    api/etudiant/cv/etablissement/create                 api.etudiant.cv.etablissement.create    App\Http\Controllers\EtablissementController@create
+	GET|HEAD    			api/etudiant/cv/etablissement/create     api.etudiant.cv.etablissement.create    formulaire de création d'un etablissement
 
- GET|HEAD    api/etudiant/cv/etablissement/{etablissement}        api.etudiant.cv.etablissement.show      App\Http\Controllers\EtablissementController@show
+	GET|HEAD    			api/etudiant/cv/etablissement/{id}        api.etudiant.cv.etablissement.show      obtenir l'etablissement de l' {id}
 
- PUT|PATCH   api/etudiant/cv/etablissement/{etablissement}        api.etudiant.cv.etablissement.update    App\Http\Controllers\EtablissementController@update
+	PUT|PATCH   			api/etudiant/cv/etablissement/{id}        api.etudiant.cv.etablissement.update    modification de l'etablissement de l' {id}
 
- DELETE      api/etudiant/cv/etablissement/{etablissement}        api.etudiant.cv.etablissement.destroy   App\Http\Controllers\EtablissementController@destroy
+	DELETE      			api/etudiant/cv/etablissement/{id}        api.etudiant.cv.etablissement.destroy   suppression de l'etablissement de l' {id}
 
- GET|HEAD    api/etudiant/cv/etablissement/{etablissement}/edit   api.etudiant.cv.etablissement.edit      App\Http\Controllers\EtablissementController@edit
+	 GET|HEAD    api/etudiant/cv/etablissement/{etablissement}/edit   api.etudiant.cv.etablissement.edit     App\Http\Controllers\EtablissementController@edit
 
- GET|HEAD    api/etudiant/cv/experience                           api.etudiant.cv.experience.index        App\Http\Controllers\ExperienceController@index
+	 GET|HEAD    api/etudiant/cv/experience                           api.etudiant.cv.experience.index        App\Http\Controllers\ExperienceController@index
 
- POST        api/etudiant/cv/experience                           api.etudiant.cv.experience.store        App\Http\Controllers\ExperienceController@store
+	 POST        api/etudiant/cv/experience                           api.etudiant.cv.experience.store        App\Http\Controllers\ExperienceController@store
 
  GET|HEAD    api/etudiant/cv/experience/create                    api.etudiant.cv.experience.create       App\Http\Controllers\ExperienceController@create
 
@@ -211,7 +211,7 @@
  PUT|PATCH   api/etudiant/{}                                      api.etudiant..update                    App\Http\Controllers\EtudiantController@update
 
  GET|HEAD    api/etudiant/{}                                      api.etudiant..show                      App\Http\Controllers\EtudiantController@show
- 
+
  GET|HEAD    api/etudiant/{}/edit                                 api.etudiant..edit                      App\Http\Controllers\EtudiantController@edit
 
 <!-- ## les routes

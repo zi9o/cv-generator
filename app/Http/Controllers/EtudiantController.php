@@ -33,6 +33,7 @@ class EtudiantController extends Controller
         $this->etudiant_gestion = $etudiant_gestion;
         $this->filiere_gestion = $filiere_gestion;
     }
+    
     /**
      * Display a listing of the resource.
      *
