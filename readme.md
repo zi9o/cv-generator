@@ -14,9 +14,9 @@
 
 	GET|HEAD  	     	/cv/{id}                 	   cv.show             
 	
-	DELETE       		/cv/{cv}                       cv.destroy               
+	DELETE       		/cv/{id}                       cv.destroy               
 
-	GET|HEAD  			/cv/{cv}/edit           	   cv.edit                  
+	GET|HEAD  			/cv/{id}/edit           	   cv.edit                  
 	
 	POST         		/etablissement           	   etablissement.store      
 
@@ -184,35 +184,35 @@
 
  	GET|HEAD    		api/etudiant/cv/langue/{id}/edit          api.etudiant.cv.langue.edit        		 formulaire modification de la langue de l' {id}	
 
- 	POST        		api/etudiant/cv/loisir                               api.etudiant.cv.loisir.store            App\Http\Controllers\LoisirController@store
+ 	POST        		api/etudiant/cv/loisir                    api.etudiant.cv.loisir.store       		 création d'un nouveau centre d'intéret
 
- GET|HEAD    api/etudiant/cv/loisir                               api.etudiant.cv.loisir.index            App\Http\Controllers\LoisirController@index
+	GET|HEAD    		api/etudiant/cv/loisir                    api.etudiant.cv.loisir.index            	 Rien
 
- GET|HEAD    api/etudiant/cv/loisir/create                        api.etudiant.cv.loisir.create           App\Http\Controllers\LoisirController@create
+	GET|HEAD    		api/etudiant/cv/loisir/create             api.etudiant.cv.loisir.create      		 formulaire de création d'un centre d'intéret
 
- DELETE      api/etudiant/cv/loisir/{loisir}                      api.etudiant.cv.loisir.destroy          App\Http\Controllers\LoisirController@destroy
+	DELETE      		api/etudiant/cv/loisir/{loisir}           api.etudiant.cv.loisir.destroy             suppression du loisir de l'{id}
 
- PUT|PATCH   api/etudiant/cv/loisir/{loisir}                      api.etudiant.cv.loisir.update           App\Http\Controllers\LoisirController@update
+	PUT|PATCH   		api/etudiant/cv/loisir/{loisir}           api.etudiant.cv.loisir.update              modification du loisir de l' {id}
 
- GET|HEAD    api/etudiant/cv/loisir/{loisir}                      api.etudiant.cv.loisir.show             App\Http\Controllers\LoisirController@show
+	GET|HEAD    		api/etudiant/cv/loisir/{id}               api.etudiant.cv.loisir.show             	 otention du loisir de l'{id}
 
- GET|HEAD    api/etudiant/cv/loisir/{loisir}/edit                 api.etudiant.cv.loisir.edit             App\Http\Controllers\LoisirController@edit
+	GET|HEAD    		api/etudiant/cv/loisir/{loisir}/edit      api.etudiant.cv.loisir.edit             	 formulaire de modification du loisir de l' {id}
 
- PUT|PATCH   api/etudiant/cv/{}                                   api.etudiant.cv..update                 App\Http\Controllers\CvController@update
+	PUT|PATCH 			api/etudiant/cv/{id}                      api.etudiant.cv.update              modification du cv de l' {id}
 
- DELETE      api/etudiant/cv/{}                                   api.etudiant.cv..destroy                App\Http\Controllers\CvController@destroy
+	DELETE    			api/etudiant/cv/{id}                      api.etudiant.cv.destroy             suppression du cv de l' {id}
 
- GET|HEAD    api/etudiant/cv/{}                                   api.etudiant.cv..show                   App\Http\Controllers\CvController@show
+	GET|HEAD  			api/etudiant/cv/{id}                      api.etudiant.cv.show                otention du cv de l'{id}
 
- GET|HEAD    api/etudiant/cv/{}/edit                              api.etudiant.cv..edit                   App\Http\Controllers\CvController@edit
+	GET|HEAD   			api/etudiant/cv/{id}/edit                 api.etudiant.cv.edit                formulaire de modification du cv de l' {id}
 
- DELETE      api/etudiant/{}                                      api.etudiant..destroy                   App\Http\Controllers\EtudiantController@destroy
+	DELETE     			api/etudiant/{id}                         api.etudiant.destroy             suppression de l'etudiant de l'{id}
 
- PUT|PATCH   api/etudiant/{}                                      api.etudiant..update                    App\Http\Controllers\EtudiantController@update
+	PUT|PATCH  			api/etudiant/{id}                   api.etudiant.update              modification de l'etudiant de l' {id}
 
- GET|HEAD    api/etudiant/{}                                      api.etudiant..show                      App\Http\Controllers\EtudiantController@show
+	GET|HEAD 			api/etudiant/{id}                   api.etudiant.show                otention de l'etudiant de l'{id}
 
- GET|HEAD    api/etudiant/{}/edit                                 api.etudiant..edit                      App\Http\Controllers\EtudiantController@edit
+	GET|HEAD  			api/etudiant/{id}/edit              api.etudiant.edit                formulaire de modification de l'etudiant de l' {id}
 
 <!-- ## les routes
 
