@@ -2,7 +2,7 @@
 ## Les urls formalisés
 
 
-	Method      	  	URI     					   Nom          		Action
+	Method      	  	URI     					   Nom          				Action
 
 	POST         	    /competence              	   competence.store 
 
