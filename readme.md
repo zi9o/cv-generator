@@ -5,7 +5,6 @@
    	GET			   	/cv           							Liste des cv
    
    	GET		 		/cv/{id}            					Recupere le cv de l'id {id}
-
  
  	GET   			/cv/create      						Pour obtenir le formulaire de création d'un cv
 
