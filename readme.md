@@ -4,18 +4,6 @@
 
 	Method      	  	URI     					   Nom          				Action
 
-	POST         	    /competence              	   competence.store 
-
-	GET|HEAD          	/competence                    competence.index   
-
-	GET|HEAD          	/competence/create             competence.create 
-
-	PUT|PATH		    /competence/{id}               competence.update      	 
-
-	DELETE       		/competence/{id}        	   competence.destroy      
-
-	GET|HEAD 	    	/competence/{id}        	   competence.show  
-
 	POST         		/cv                     	   cv.store  
 
 	GET|HEAD		    /cv                      	   cv.index     
@@ -29,7 +17,7 @@
 	DELETE       		/cv/{cv}                       cv.destroy               
 
 	GET|HEAD  			/cv/{cv}/edit           	   cv.edit                  
-
+	
 	POST         		/etablissement           	   etablissement.store      
 
 	GET|HEAD		    /etablissement        		   etablissement.index      
@@ -44,20 +32,6 @@
 
 	GET|HEAD          	/etablissement/{id}/edit 	   etablissement.edit       
 
-	POST         		/experience                    experience.store         
-
-	GET|HEAD          	/experience                    experience.index         
-
-	GET|HEAD          	/experience/create             experience.create        
-
-	DELETE       		/experience/{id}               experience.destroy       
-
-	GET|HEAD          	/experience/{id}               experience.show          
-
-	PUT|PATH           	/experience/{id}               experience.update        
-
-	GET|HEAD          	/experience/{id}/edit          experience.edit          
-
 	POST         		/formation                     formation.store          
 
 	GET|HEAD          	/formation                     formation.index         
@@ -71,6 +45,32 @@
 	GET|HEAD          	/formation/{id}                formation.show           
 
 	GET|HEAD          	/formation/{id}/edit           formation.edit          
+
+	POST         	    /competence              	   competence.store 
+
+	GET|HEAD          	/competence                    competence.index   
+
+	GET|HEAD          	/competence/create             competence.create 
+
+	PUT|PATH		    /competence/{id}               competence.update      	 
+
+	DELETE       		/competence/{id}        	   competence.destroy      
+
+	GET|HEAD 	    	/competence/{id}        	   competence.show  
+
+	POST         		/experience                    experience.store         
+
+	GET|HEAD          	/experience                    experience.index         
+
+	GET|HEAD          	/experience/create             experience.create        
+
+	DELETE       		/experience/{id}               experience.destroy       
+
+	GET|HEAD          	/experience/{id}               experience.show          
+
+	PUT|PATH           	/experience/{id}               experience.update        
+
+	GET|HEAD          	/experience/{id}/edit          experience.edit          
 
 	GET|HEAD          	/langue                        langue.index             
 
