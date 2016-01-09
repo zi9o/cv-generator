@@ -83,7 +83,7 @@ class FormationController extends Controller
      */
     public function show($id)
     {
-        return Formation::findOrFail($id);
+        return $this->formation_gestion->get($id);
     }
 
     /**

@@ -287,4 +287,24 @@ class FormationRepository extends BaseRepository {
         return $this->tag->findOrFail($tag_id)->tag;
     }
 
+    public function get($id)
+    {
+        $value = Formation::find($id);  
+
+        if (empty($value)) {
+            return array();
+        }
+
+        $formation = array ( 
+                            "id"=>$value->id,
+                            "intitule"=>$value->intitule,
+                            "diplome"=>$value->diplome,
+                            "date_debut"=>$value->date_debut,
+                            "date_fin"=>$value->date_fin,
+                            "mention"=>$value->mention,
+                            "etablissement"=>$value->etablissement,  
+                    );
+        return ['formation'=> $formation];
+        
+    }
 }

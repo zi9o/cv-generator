@@ -8,6 +8,11 @@ class Formation extends Model
 {
     public function cv() 
 	{
-		return $this->belongsTo('App\Cv');
+		return $this->belongsTo('App\Models\Cv');
+	}
+
+	public function etablissement() 
+	{
+		return $this->belongsTo('App\Models\Etablissement');
 	}
 }

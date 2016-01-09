@@ -116,7 +116,8 @@ class CvController extends Controller
      */
     public function update(Request $request, $id)
     {
-        var_dump('test');
+        $cv = $this->cv_gestion->update($request->all(), $id);
+        return $cv;
     }
 
     /**

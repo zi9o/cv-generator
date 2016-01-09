@@ -98,6 +98,122 @@
 
 	GET|HEAD          	/loisir/{loisir}/edit          loisir.edit              
 
+## les routes
+
+
+ GET|HEAD    api/etudiant                                         api.etudiant..index                     App\Http\Controllers\EtudiantController@index
+
+ POST        api/etudiant                                         api.etudiant..store                     App\Http\Controllers\EtudiantController@store
+
+ GET|HEAD    api/etudiant/create                                  api.etudiant..create                    App\Http\Controllers\EtudiantController@create
+
+ POST        api/etudiant/cv                                      api.etudiant.cv..store                  App\Http\Controllers\CvController@store
+
+ GET|HEAD    api/etudiant/cv                                      api.etudiant.cv..index                  App\Http\Controllers\CvController@index
+
+ POST        api/etudiant/cv/competence                           api.etudiant.cv.competence.store        App\Http\Controllers\CompetenceController@store
+
+ GET|HEAD    api/etudiant/cv/competence                           api.etudiant.cv.competence.index        App\Http\Controllers\CompetenceController@index
+
+ GET|HEAD    api/etudiant/cv/competence/create                    api.etudiant.cv.competence.create       App\Http\Controllers\CompetenceController@create
+
+ DELETE      api/etudiant/cv/competence/{competence}              api.etudiant.cv.competence.destroy      App\Http\Controllers\CompetenceController@destroy
+
+ PUT|PATCH   api/etudiant/cv/competence/{competence}              api.etudiant.cv.competence.update       App\Http\Controllers\CompetenceController@update
+
+ GET|HEAD    api/etudiant/cv/competence/{competence}              api.etudiant.cv.competence.show         App\Http\Controllers\CompetenceController@show
+
+ GET|HEAD    api/etudiant/cv/competence/{competence}/edit         api.etudiant.cv.competence.edit         App\Http\Controllers\CompetenceController@edit
+
+ GET|HEAD    api/etudiant/cv/create                               api.etudiant.cv..create                 App\Http\Controllers\CvController@create
+
+ POST        api/etudiant/cv/etablissement                        api.etudiant.cv.etablissement.store     App\Http\Controllers\EtablissementController@store
+
+ GET|HEAD    api/etudiant/cv/etablissement                        api.etudiant.cv.etablissement.index     App\Http\Controllers\EtablissementController@index
+
+ GET|HEAD    api/etudiant/cv/etablissement/create                 api.etudiant.cv.etablissement.create    App\Http\Controllers\EtablissementController@create
+
+ GET|HEAD    api/etudiant/cv/etablissement/{etablissement}        api.etudiant.cv.etablissement.show      App\Http\Controllers\EtablissementController@show
+
+ PUT|PATCH   api/etudiant/cv/etablissement/{etablissement}        api.etudiant.cv.etablissement.update    App\Http\Controllers\EtablissementController@update
+
+ DELETE      api/etudiant/cv/etablissement/{etablissement}        api.etudiant.cv.etablissement.destroy   App\Http\Controllers\EtablissementController@destroy
+
+ GET|HEAD    api/etudiant/cv/etablissement/{etablissement}/edit   api.etudiant.cv.etablissement.edit      App\Http\Controllers\EtablissementController@edit
+
+ GET|HEAD    api/etudiant/cv/experience                           api.etudiant.cv.experience.index        App\Http\Controllers\ExperienceController@index
+
+ POST        api/etudiant/cv/experience                           api.etudiant.cv.experience.store        App\Http\Controllers\ExperienceController@store
+
+ GET|HEAD    api/etudiant/cv/experience/create                    api.etudiant.cv.experience.create       App\Http\Controllers\ExperienceController@create
+
+ PUT|PATCH   api/etudiant/cv/experience/{experience}              api.etudiant.cv.experience.update       App\Http\Controllers\ExperienceController@update
+
+ DELETE      api/etudiant/cv/experience/{experience}              api.etudiant.cv.experience.destroy      App\Http\Controllers\ExperienceController@destroy
+
+ GET|HEAD    api/etudiant/cv/experience/{experience}              api.etudiant.cv.experience.show         App\Http\Controllers\ExperienceController@show
+
+ GET|HEAD    api/etudiant/cv/experience/{experience}/edit         api.etudiant.cv.experience.edit         App\Http\Controllers\ExperienceController@edit
+
+ GET|HEAD    api/etudiant/cv/formation                            api.etudiant.cv.formation.index         App\Http\Controllers\FormationController@index
+
+ POST        api/etudiant/cv/formation                            api.etudiant.cv.formation.store         App\Http\Controllers\FormationController@store
+
+ GET|HEAD    api/etudiant/cv/formation/create                     api.etudiant.cv.formation.create        App\Http\Controllers\FormationController@create
+
+ GET|HEAD    api/etudiant/cv/formation/{formation}                api.etudiant.cv.formation.show          App\Http\Controllers\FormationController@show
+
+ PUT|PATCH   api/etudiant/cv/formation/{formation}                api.etudiant.cv.formation.update        App\Http\Controllers\FormationController@update
+
+ DELETE      api/etudiant/cv/formation/{formation}                api.etudiant.cv.formation.destroy       App\Http\Controllers\FormationController@destroy
+
+ GET|HEAD    api/etudiant/cv/formation/{formation}/edit           api.etudiant.cv.formation.edit          App\Http\Controllers\FormationController@edit
+
+ POST        api/etudiant/cv/langue                               api.etudiant.cv.langue.store            App\Http\Controllers\LangueController@store
+
+ GET|HEAD    api/etudiant/cv/langue                               api.etudiant.cv.langue.index            App\Http\Controllers\LangueController@index
+
+ GET|HEAD    api/etudiant/cv/langue/create                        api.etudiant.cv.langue.create           App\Http\Controllers\LangueController@create
+
+ DELETE      api/etudiant/cv/langue/{langue}                      api.etudiant.cv.langue.destroy          App\Http\Controllers\LangueController@destroy
+
+ PUT|PATCH   api/etudiant/cv/langue/{langue}                      api.etudiant.cv.langue.update           App\Http\Controllers\LangueController@update
+
+ GET|HEAD    api/etudiant/cv/langue/{langue}                      api.etudiant.cv.langue.show             App\Http\Controllers\LangueController@show
+
+ GET|HEAD    api/etudiant/cv/langue/{langue}/edit                 api.etudiant.cv.langue.edit             App\Http\Controllers\LangueController@edit
+
+
+ POST        api/etudiant/cv/loisir                               api.etudiant.cv.loisir.store            App\Http\Controllers\LoisirController@store
+
+ GET|HEAD    api/etudiant/cv/loisir                               api.etudiant.cv.loisir.index            App\Http\Controllers\LoisirController@index
+
+ GET|HEAD    api/etudiant/cv/loisir/create                        api.etudiant.cv.loisir.create           App\Http\Controllers\LoisirController@create
+
+ DELETE      api/etudiant/cv/loisir/{loisir}                      api.etudiant.cv.loisir.destroy          App\Http\Controllers\LoisirController@destroy
+
+ PUT|PATCH   api/etudiant/cv/loisir/{loisir}                      api.etudiant.cv.loisir.update           App\Http\Controllers\LoisirController@update
+
+ GET|HEAD    api/etudiant/cv/loisir/{loisir}                      api.etudiant.cv.loisir.show             App\Http\Controllers\LoisirController@show
+
+ GET|HEAD    api/etudiant/cv/loisir/{loisir}/edit                 api.etudiant.cv.loisir.edit             App\Http\Controllers\LoisirController@edit
+
+ PUT|PATCH   api/etudiant/cv/{}                                   api.etudiant.cv..update                 App\Http\Controllers\CvController@update
+
+ DELETE      api/etudiant/cv/{}                                   api.etudiant.cv..destroy                App\Http\Controllers\CvController@destroy
+
+ GET|HEAD    api/etudiant/cv/{}                                   api.etudiant.cv..show                   App\Http\Controllers\CvController@show
+
+ GET|HEAD    api/etudiant/cv/{}/edit                              api.etudiant.cv..edit                   App\Http\Controllers\CvController@edit
+
+ DELETE      api/etudiant/{}                                      api.etudiant..destroy                   App\Http\Controllers\EtudiantController@destroy
+
+ PUT|PATCH   api/etudiant/{}                                      api.etudiant..update                    App\Http\Controllers\EtudiantController@update
+
+ GET|HEAD    api/etudiant/{}                                      api.etudiant..show                      App\Http\Controllers\EtudiantController@show
+ 
+ GET|HEAD    api/etudiant/{}/edit                                 api.etudiant..edit                      App\Http\Controllers\EtudiantController@edit
+
 <!-- ## les routes
 
 	Method		   	URL		     							Action
