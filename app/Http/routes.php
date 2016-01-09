@@ -16,191 +16,191 @@
 
 
 
-Route::group(array('prefix' => 'cv'), function()
-{
-	// routes pour les cvs
-	Route::get('create', [
-		'uses' => 'CvController@create',
-		'as' => 'create-cv'
-	]);
+// Route::group(array('prefix' => 'cv'), function()
+// {
+// 	// routes pour les cvs
+// 	Route::get('create', [
+// 		'uses' => 'CvController@create',
+// 		'as' => 'create-cv'
+// 	]);
 
-	Route::post('create', [
-		'uses' => 'CvController@store',
-		'as' => 'create-cv'
-	]);
+// 	Route::post('create', [
+// 		'uses' => 'CvController@store',
+// 		'as' => 'create-cv'
+// 	]);
 	
-	Route::get('edit/{id}', [
-		'uses' => 'CvController@edit',
-		'as' => 'edit-cv'
-	])->where('id', '[0-9]+');
+// 	Route::get('edit/{id}', [
+// 		'uses' => 'CvController@edit',
+// 		'as' => 'edit-cv'
+// 	])->where('id', '[0-9]+');
 
-	Route::post('edit/{id}', [
-		'uses' => 'CvController@update',
-		'as' => 'edit-cv'
-	])->where('id', '[0-9]+');
+// 	Route::post('edit/{id}', [
+// 		'uses' => 'CvController@update',
+// 		'as' => 'edit-cv'
+// 	])->where('id', '[0-9]+');
 	
-	Route::post('delete', [
-		'uses' => 'CvController@destroy',
-		'as' => 'delete-cv'
-	])->where('id', '[0-9]+');
+// 	Route::post('delete', [
+// 		'uses' => 'CvController@destroy',
+// 		'as' => 'delete-cv'
+// 	])->where('id', '[0-9]+');
 	
-	Route::get('/', [
-		'uses' => 'CvController@index',
-		'as' => 'cv'
-	]);
+// 	Route::get('/', [
+// 		'uses' => 'CvController@index',
+// 		'as' => 'cv'
+// 	]);
 
-	Route::get('/{id}', [
-		'uses' => 'CvController@show',
-		'as' => 'show-cv'
-	])->where('id', '[0-9]+');
+// 	Route::get('/{id}', [
+// 		'uses' => 'CvController@show',
+// 		'as' => 'show-cv'
+// 	])->where('id', '[0-9]+');
 	
-	Route::get('/etudiant/{id}', [
-		'uses' => 'CvController@cvsetudiant',
-		'as' => 'mes-cv'
-	])->where('id', '[0-9]+');
+// 	Route::get('/etudiant/{id}', [
+// 		'uses' => 'CvController@cvsetudiant',
+// 		'as' => 'mes-cv'
+// 	])->where('id', '[0-9]+');
 
 
-	// routes pour les formations
-	Route::get('formation/create', [
-		'uses' => 'FormationController@create',
-		'as' => 'create-cv'
-	]);
+// 	// routes pour les formations
+// 	Route::get('formation/create', [
+// 		'uses' => 'FormationController@create',
+// 		'as' => 'create-cv'
+// 	]);
 
-	Route::post('formation/create', [
-		'uses' => 'FormationController@store',
-		'as' => 'create-formation/'
-	]);
+// 	Route::post('formation/create', [
+// 		'uses' => 'FormationController@store',
+// 		'as' => 'create-formation/'
+// 	]);
 	
-	Route::get('formation/edit/{id}', [
-		'uses' => 'FormationController@edit',
-		'as' => 'edit-formation'
-	])->where('id', '[0-9]+');
+// 	Route::get('formation/edit/{id}', [
+// 		'uses' => 'FormationController@edit',
+// 		'as' => 'edit-formation'
+// 	])->where('id', '[0-9]+');
 
-	Route::post('formation/edit', [
-		'uses' => 'FormationController@update',
-		'as' => 'edit-formation'
-	])->where('id', '[0-9]+');
+// 	Route::post('formation/edit', [
+// 		'uses' => 'FormationController@update',
+// 		'as' => 'edit-formation'
+// 	])->where('id', '[0-9]+');
 	
-	Route::post('formation/delete', [
-		'uses' => 'FormationController@destroy',
-		'as' => 'delete-formation'
-	])->where('id', '[0-9]+');
+// 	Route::post('formation/delete', [
+// 		'uses' => 'FormationController@destroy',
+// 		'as' => 'delete-formation'
+// 	])->where('id', '[0-9]+');
 	
-	Route::get('formation', [
-		'uses' => 'FormationController@index',
-		'as' => 'cv-formation'
-	]);
+// 	Route::get('formation', [
+// 		'uses' => 'FormationController@index',
+// 		'as' => 'cv-formation'
+// 	]);
 
-	Route::get('formation/{id}', [
-		'uses' => 'FormationController@show',
-		'as' => 'show-formation/'
-	])->where('id', '[0-9]+');
+// 	Route::get('formation/{id}', [
+// 		'uses' => 'FormationController@show',
+// 		'as' => 'show-formation/'
+// 	])->where('id', '[0-9]+');
 	
-	Route::get('formation/etablissement/{id}', [
-		'uses' => 'FormationController@formationsetab',
-		'as' => 'formations-etab'
-	])->where('id', '[0-9]+');
+// 	Route::get('formation/etablissement/{id}', [
+// 		'uses' => 'FormationController@formationsetab',
+// 		'as' => 'formations-etab'
+// 	])->where('id', '[0-9]+');
 
-});
+// });
 
 
-Route::group(array('prefix' => 'etudiant'), function()
-{
-	// routes pour les cvs
-	Route::get('create', [
-		'uses' => 'EtudiantController@create',
-		'as' => 'create-etudiant'
-	]);
+// Route::group(array('prefix' => 'etudiant'), function()
+// {
+// 	// routes pour les cvs
+// 	Route::get('create', [
+// 		'uses' => 'EtudiantController@create',
+// 		'as' => 'create-etudiant'
+// 	]);
 
-	Route::post('create', [
-		'uses' => 'EtudiantController@store',
-		'as' => 'create-etudiant'
-	]);
+// 	Route::post('create', [
+// 		'uses' => 'EtudiantController@store',
+// 		'as' => 'create-etudiant'
+// 	]);
 	
-	Route::get('edit/{id}', [
-		'uses' => 'EtudiantController@edit',
-		'as' => 'edit-etudiant'
-	])->where('id', '[0-9]+');
+// 	Route::get('edit/{id}', [
+// 		'uses' => 'EtudiantController@edit',
+// 		'as' => 'edit-etudiant'
+// 	])->where('id', '[0-9]+');
 
-	Route::post('edit', [
-		'uses' => 'EtudiantController@update',
-		'as' => 'edit-etudiant'
-	])->where('id', '[0-9]+');
+// 	Route::post('edit', [
+// 		'uses' => 'EtudiantController@update',
+// 		'as' => 'edit-etudiant'
+// 	])->where('id', '[0-9]+');
 	
-	Route::post('delete', [
-		'uses' => 'EtudiantController@destroy',
-		'as' => 'delete-etudiant'
-	])->where('id', '[0-9]+');
+// 	Route::post('delete', [
+// 		'uses' => 'EtudiantController@destroy',
+// 		'as' => 'delete-etudiant'
+// 	])->where('id', '[0-9]+');
 	
-	Route::get('/', [
-		'uses' => 'EtudiantController@index',
-		'as' => 'etudiants'
-	]);
+// 	Route::get('/', [
+// 		'uses' => 'EtudiantController@index',
+// 		'as' => 'etudiants'
+// 	]);
 
-	Route::get('/{id}', [
-		'uses' => 'EtudiantController@show',
-		'as' => 'show-etudiant'
-	])->where('id', '[0-9]+');
+// 	Route::get('/{id}', [
+// 		'uses' => 'EtudiantController@show',
+// 		'as' => 'show-etudiant'
+// 	])->where('id', '[0-9]+');
 	
-	Route::get('/filiere/{id}', [
-		'uses' => 'EtudiantController@etudiantsfiliere',
-		'as' => 'etudiants_filiere'
-	])->where('id', '[0-9]+');
+// 	Route::get('/filiere/{id}', [
+// 		'uses' => 'EtudiantController@etudiantsfiliere',
+// 		'as' => 'etudiants_filiere'
+// 	])->where('id', '[0-9]+');
 
-});
+// });
 
 
-Route::group(array('prefix' => 'etablissement'), function()
-{
-	// routes pour les cvs
-	Route::get('create', [
-		'uses' => 'EtablissementController@create',
-		'as' => 'create-etab'
-	]);
+// Route::group(array('prefix' => 'etablissement'), function()
+// {
+// 	// routes pour les cvs
+// 	Route::get('create', [
+// 		'uses' => 'EtablissementController@create',
+// 		'as' => 'create-etab'
+// 	]);
 
-	Route::post('create', [
-		'uses' => 'EtablissementController@store',
-		'as' => 'create-etab'
-	]);
+// 	Route::post('create', [
+// 		'uses' => 'EtablissementController@store',
+// 		'as' => 'create-etab'
+// 	]);
 	
-	Route::get('edit/{id}', [
-		'uses' => 'EtablissementController@edit',
-		'as' => 'edit-etab'
-	])->where('id', '[0-9]+');
+// 	Route::get('edit/{id}', [
+// 		'uses' => 'EtablissementController@edit',
+// 		'as' => 'edit-etab'
+// 	])->where('id', '[0-9]+');
 
-	Route::post('edit', [
-		'uses' => 'EtablissementController@update',
-		'as' => 'edit-etab'
-	])->where('id', '[0-9]+');
+// 	Route::post('edit', [
+// 		'uses' => 'EtablissementController@update',
+// 		'as' => 'edit-etab'
+// 	])->where('id', '[0-9]+');
 	
-	Route::post('delete', [
-		'uses' => 'EtablissementController@destroy',
-		'as' => 'delete-etab'
-	])->where('id', '[0-9]+');
+// 	Route::post('delete', [
+// 		'uses' => 'EtablissementController@destroy',
+// 		'as' => 'delete-etab'
+// 	])->where('id', '[0-9]+');
 	
-	Route::get('/', [
-		'uses' => 'EtablissementController@index',
-		'as' => 'etablissement'
-	]);
+// 	Route::get('/', [
+// 		'uses' => 'EtablissementController@index',
+// 		'as' => 'etablissement'
+// 	]);
 
-	Route::get('/{id}', [
-		'uses' => 'EtablissementController@show',
-		'as' => 'show-etab'
-	])->where('id', '[0-9]+');
-});
+// 	Route::get('/{id}', [
+// 		'uses' => 'EtablissementController@show',
+// 		'as' => 'show-etab'
+// 	])->where('id', '[0-9]+');
+// });
 
 
 
-// Route::resource('cv', 'CvController');
-// Route::resource('formation', 'FormationController') ;
-// Route::resource('etablissement', 'EtablissementController') ;
-// Route::resource('competence', 'CompetenceController') ;
+Route::resource('cv', 'CvController');
+Route::resource('formation', 'FormationController') ;
+Route::resource('etablissement', 'EtablissementController') ;
+Route::resource('competence', 'CompetenceController') ;
 
-// 	/******           nawal           *******/
+	/******           nawal           *******/
 
-// Route::resource('experience', 'ExperienceController') ;
-// Route::resource('loisir', 'LoisirController') ;
-// Route::resource('langue', 'LangueController') ;
+Route::resource('experience', 'ExperienceController') ;
+Route::resource('loisir', 'LoisirController') ;
+Route::resource('langue', 'LangueController') ;
 
 
 // Route::get('auth/login', [

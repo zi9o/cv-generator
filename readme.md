@@ -1,4 +1,105 @@
-## les routes
+
+## Les urls formalisés
+
++--------+-----------+------------------------------------+----------------------+
+Method    | URI                   | nom                  	| Action
++--------+-----------+------------------------------------+----------------------+
+
+POST      | /competence           | competence.store     	| 
+
+GET       | /competence           | competence.index     	| 
+
+GET       | /competence/create    | competence.create    	| 
+
+PUT		  | /competence/{id}      | competence.update      	| 
+
+DELETE    | /competence/{id}      | competence.destroy    	| 
+
+GET 	  | /competence/{id}      | competence.show       	| 
+
+POST      | /cv                   | cv.store              	| 
+
+GET		  | /cv                   | cv.index              	| 
+
+GET       | /cv/create            | cv.create             	| 
+
+PUT|PATCH | /cv/{id}              | cv.update             	| 
+
+GET|HEAD  | /cv/{id}              | cv.show               	| 
+/
+DELETE    | /cv/{cv}              | cv.destroy            | 
+
+GET|HEAD  | /cv/{cv}/edit         | cv.edit               | 
+
+POST      | /etablissement        | etablissement.store   | 
+
+GET		  | /etablissement        		| etablissement.index   | 
+
+GET		  | /etablissement/create 		| etablissement.create  | 
+
+PUT|PATCH | /etablissement/{id}   		| etablissement.update  | 
+
+GET|HEAD  | /etablissement/{id}   		| etablissement.show    | 
+
+DELETE    | /etablissement/{id}    		| etablissement.destroy | 
+
+GET|HEAD  | /etablissement/{id}/edit 	| etablissement.edit    | 
+
+POST      | /experience                 | experience.store      | 
+
+GET|HEAD  | /experience                 | experience.index      | 
+
+GET|HEAD  | /experience/create          | experience.create     | 
+
+DELETE    | /experience/{id}            | experience.destroy    | 
+
+GET|HEAD  | /experience/{id}            | experience.show       | 
+
+PUT|PATCH | /experience/{id}            | experience.update     | 
+
+GET|HEAD  | /experience/{id}/edit       | experience.edit       | 
+
+POST      | /formation                  | formation.store       | 
+
+GET|HEAD  | /formation                  | formation.index       |
+
+GET|HEAD  | /formation/create           | formation.create      |
+
+DELETE    | /formation/{id}             | formation.destroy    | 
+
+PUT|PATCH | /formation/{id}             | formation.update      | 
+
+GET|HEAD  | /formation/{id}             | formation.show        | 
+
+GET|HEAD  | /formation/{id}/edit        | formation.edit        |
+
+GET|HEAD  | /langue                     | langue.index          | 
+
+POST      | /langue                     | langue.store          | 
+
+GET|HEAD  | /langue/create              | langue.create         | 
+
+GET|HEAD  | /langue/{langue}            | langue.show           | 
+
+PUT|PATCH | langue/{langue}             | langue.update         | 
+
+DELETE    | langue/{langue}             | langue.destroy        | 
+
+GET|HEAD  | langue/{langue}/edit        | langue.edit           | 
+
+GET|HEAD  | /loisir                     | loisir.index          | 
+
+POST      | /loisir                     | loisir.store          | 
+
+GET|HEAD  | /loisir/{loisir}            | loisir.show           | 
+
+PUT|PATCH | /loisir/{loisir}            | loisir.update         | 
+
+DELETE    | /loisir/{loisir}            | loisir.destroy        | 
+
+GET|HEAD  | loisir/{loisir}/edit        | loisir.edit           | 
++--------+-----------+------------------------------------+----------------------+
+<!-- ## les routes
 
 	Method		   	URL		     							Action
 									
@@ -63,7 +164,7 @@
 	GET				/etudiant/filiere/{id}           		listes des étudiants d'une filière 
 
 	GET			 	/etudiant/{id}                   		Obténir un étudiant 
-
+ -->
 ## Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
