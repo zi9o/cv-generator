@@ -51,14 +51,13 @@ class FormationRepository extends BaseRepository {
      * @param  bool   $user_id
      * @return App\Models\Formation
      */
-    public function save($inputs)
+    public function save($inputs, $cv_id=null)
     {
         $this->model->intitule = $inputs['intitule'];
         $this->model->diplome = $inputs['diplome'];
         // $this->model->date_debut = $inputs['date_debut'];
         // $this->model->date_fin = $inputs['date_fin'];
         $this->model->mention = $inputs['mention'];
-        $this->model->diplome = $inputs['diplome'];
         $this->cv = Cv::find(intval($inputs['cv']));
         if($this->cv != null) {
             $this->model->cv_id = $this->cv->id;
@@ -153,8 +152,24 @@ class FormationRepository extends BaseRepository {
         if ($cv_id) {
             $query->where('cv_id', $cv_id);
         }
+        $query->paginate($n);
+        $var = $query->paginate($n);
 
-        return $query->paginate($n);
+        foreach ($var as $value) {
+            $this->etablissement = Etablissement::find($value->etablissement_id);
+            $formations[] = [
+                            "id"=>$value->id,
+                            "intitule"=>$value->intitule,
+                            "diplome"=>$value->diplome,
+                            "date_debut"=>$value->date_debut,
+                            "date_fin"=>$value->date_fin,
+                            "mention"=>$value->mention,
+                            "etablissement"=>$this->etablissement,                    
+            ];
+
+        }
+        
+        return ["formations"=>$formations];
     }
 
     /**

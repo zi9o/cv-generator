@@ -8,13 +8,11 @@ class Etudiant extends Model
 {
 	public function filiere() 
 	{
-		return $this->belongsTo('App\Filiere');
+		return $this->belongsTo('App\Models\Filiere');
 	}
 
     public function cvs() 
 	{
-	    return $this->hasMany('App\Cv');
+	    return $this->hasMany('App\Models\Cv');
 	}
-
-	
 }

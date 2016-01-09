@@ -4,7 +4,8 @@ namespace App\Repositories;
 
 use App\Models\Cv;
 use App\Models\Etudiant;
-
+use App\Models\Filiere;
+use DB;
 class CvRepository extends BaseRepository {
 
     /**
@@ -125,17 +126,54 @@ class CvRepository extends BaseRepository {
      * @param  string  $direction
      * @return Illuminate\Support\Collection
      */
-    public function index($n, $user_id = null)
+    public function index($n, $etudiant_id = null)
     {
-        $query = $this->model
-                ->select('cvs.id', 'cvs.lienVideo', 'cvs.created_at', 'cvs.nom_cv', 'cvs.etudiant_id')
-                ->join('etudiants', 'etudiants.id', '=', 'cvs.etudiant_id');
-
-        if ($user_id) {
-            $query->where('etudiant_id', $user_id);
+        $etudiants = DB::table('etudiants');
+        if ($etudiant_id) {
+            $etudiants->where('id', $etudiant_id);
         }
 
-        return $query->paginate($n);
+        $etudiants = $etudiants->paginate($n);
+        
+        foreach ($etudiants as $etudiant) {
+            $cvs[] = $this->getCvsEtudiant($etudiant->id);
+        }
+        
+        return $cvs;
+    }
+
+    public function getCvsEtudiant($id)
+    {
+        $var = Etudiant::find($id);  
+
+        if (empty($var)) {
+            return array();
+        }
+        $query = $this->model
+                ->select('cvs.id')->distinct()
+                ->join('etudiants', 'etudiants.id', '=', 'cvs.etudiant_id')
+                ->where('etudiant_id', $var->id)
+                ->paginate(5);
+        $cv = array();
+        foreach ($query as $value) {
+            $cv[] = $this->get($value->id);
+        }
+        $this->filiere = Filiere::find($var->filiere_id);
+        $etudiant = [
+                    "id"=>$var->id,
+                    "cne"=>$var->cne,
+                    "nom"=>$var->nom,
+                    "prenom"=>$var->prenom,
+                    "dateNaissance"=>$var->dateNaissance,
+                    "photo"=>$var->photo,
+                    "telephone"=>$var->telephone,
+                    "situation"=>$var->situation,
+                    "adresse"=>$var->adresse,
+                    "filiere"=>$this->filiere,
+                    "cv" => $cv
+        ];
+
+        return ["etudiant" => $etudiant];
     }
 
     /**
@@ -253,4 +291,65 @@ class CvRepository extends BaseRepository {
         return $this->tag->findOrFail($tag_id)->tag;
     }
 
+
+    public function get($id)
+    {
+        $var = Cv::find($id);  
+
+        if (empty($var)) {
+            return array();
+        }
+
+        $cv = array (   "id"=>$var->id,
+                        "nomcv"=>$var->nom_cv,
+                        "lienVideo"=>$var->lienVideo,
+                        "loisirs" =>$var->loisirs,
+                        "competences" =>$var->competences,
+                        "formations" =>$var->formations,
+                        "langues" =>$var->langues,
+                        "loisirs" =>$var->loisirs,
+                    );
+
+        return $cv;
+    }
+
+    public function getcv($id)
+    {
+        $var = Cv::find($id);  
+
+        if (empty($var)) {
+            return array();
+        }
+
+        $e = $var->etudiant;
+
+
+        $cv =  [ 
+                    "id" => $var->id,
+                    "nomcv"=>$var->nom_cv,
+                    "lienVideo"=>$var->lienVideo,
+                    "loisirs" =>$var->loisirs,
+                    "competences" =>$var->competences,
+                    "experiences" =>$var->experiences,
+                    "formations" =>$var->formations,
+                    "langues" =>$var->langues,
+                    "loisirs" =>$var->loisirs,
+                ];
+
+        $etudiant = [
+                    "id"=>$e->id,
+                    "cne"=>$e->cne,
+                    "nom"=>$e->nom,
+                    "prenom"=>$e->prenom,
+                    "dateNaissance"=>$e->dateNaissance,
+                    "photo"=>$e->photo,
+                    "telephone"=>$e->telephone,
+                    "situation"=>$e->situation,
+                    "adresse"=>$e->adresse,
+                    "filiere"=>$e->filiere,
+                    "cv" => $cv
+        ];
+
+        return ["etudiant" => $etudiant];
+    }
 }

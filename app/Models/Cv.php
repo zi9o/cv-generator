@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Model;
 
 class Cv extends Model
@@ -29,5 +28,10 @@ class Cv extends Model
 	public function competences() 
 	{
 	    return $this->hasMany('App\Models\Competence');
+	}
+
+	public function experiences() 
+	{
+	    return $this->hasMany('App\Models\Experience');
 	}
 }

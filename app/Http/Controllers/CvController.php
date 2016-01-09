@@ -49,25 +49,16 @@ class CvController extends Controller
      */
     public function index()
     {
-        $var = Cv::get() ;
+        $cvs = $this->cv_gestion->index(4); 
         
+       return $cvs;
+    }
 
-        foreach ($var as $cv) {
-            $cvs[] = [ "id"=>$cv->id,
-                                    "lienVideo"=>$cv->lienVideo,
-                                    "Etudiant"=>$cv->Etudiant,
-                                    "created_at"=>$cv->created_at,
-                                    "updated_at"=>$cv->updated_at,
-                                    "loisirs" =>$cv->loisirs,
-                                    "competences" =>$cv->competences,
-                                    "formations" =>$cv->formations,
-                                    "langues" =>$cv->langues,
-                                    "loisirs" =>$cv->loisirs,
-                        ];
-        }
-
-        $cvs = $this->cv_gestion->index(8); 
-        return $cvs;
+    public function cvsetudiant($id)
+    {
+        $cvs = $this->cv_gestion->index(4, $id); 
+        
+       return $cvs;
     }
 
     /**
@@ -101,23 +92,7 @@ class CvController extends Controller
      */
     public function show($id)
     {
-        $var = Cv::find($id);  
-
-        if (empty($var)) {
-            return array();
-        }
-        $cv = array (   "id"=>$var->id,
-                        "lienVideo"=>$var->lienVideo,
-                        "Etudiant"=>$var->Etudiant,
-                        "created_at"=>$var->created_at,
-                        "updated_at"=>$var->updated_at,
-                        "loisirs" =>$var->loisirs,
-                        "competences" =>$var->competences,
-                        "formations" =>$var->formations,
-                        "langues" =>$var->langues,
-                        "loisirs" =>$var->loisirs,
-                    );
-
+        $cv = $this->cv_gestion->getcv($id);
         return $cv;
     }
 
@@ -141,8 +116,7 @@ class CvController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $cv = $this->cv_gestion->update($request->all(), $id);
-        return $cv;
+        var_dump('test');
     }
 
     /**

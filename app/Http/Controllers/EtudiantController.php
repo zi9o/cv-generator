@@ -4,12 +4,35 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Repositories\EtudiantRepository;
+use App\Repositories\FiliereRepository;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Etudiant;
+use App\Models\Filiere;
 
 class EtudiantController extends Controller
 {
+    /**
+     * The EtudiantRepository instance.
+     *
+     * @var App\Repositories\EtudiantRepository
+     */ 
+    protected $etudiant_gestion;
+
+    /**
+     * The FiliereRepository instance.
+     *
+     * @var App\Repositories\FiliereRepository
+     *
+     */
+    protected $filiere_gestion;
+
+    public function __construct(EtudiantRepository $etudiant_gestion, FiliereRepository $filiere_gestion)
+    {
+        $this->etudiant_gestion = $etudiant_gestion;
+        $this->filiere_gestion = $filiere_gestion;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +40,7 @@ class EtudiantController extends Controller
      */
     public function index()
     {
-        return Etudiant::get();
+        return $this->etudiant_gestion->index(5);
     }
 
     /**
@@ -64,8 +87,8 @@ class EtudiantController extends Controller
      */
     public function show($id)
     {
-        $post = Etudiant::findOrFail($id);
-        return $post;
+        $etudiant = Etudiant::findOrFail($id);
+        return $etudiant;
     }
 
     /**
@@ -102,5 +125,10 @@ class EtudiantController extends Controller
         Etudiant::destroy($id);
         return array('success' => true);
 
+    }
+
+    public function etudiantsfiliere($id)
+    {
+        return $this->etudiant_gestion->index(5, $id);
     }
 }

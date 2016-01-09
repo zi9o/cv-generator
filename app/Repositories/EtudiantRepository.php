@@ -71,19 +71,62 @@ class EtudiantRepository extends BaseRepository
 	 * @param  string  $role
 	 * @return Illuminate\Support\Collection
 	 */
-	public function index($n, $filiere)
-	{
-		if($filiere != 'all')
-		{
-			return $this->model->with('filiere')->whereHas('filiere', function($f) use ($filiere) 
-			{
-				$f->whereSlug($filiere); // filtrer par filière
-			})->paginate($n);			
-		}
+	// public function index($n, $filiere)
+	// {
+	// 	if($filiere != 'all')
+	// 	{
+	// 		return $this->model->with('filiere')->whereHas('filiere', function($f) use ($filiere) 
+	// 		{
+	// 			$f->whereSlug($filiere); // filtrer par filière
+	// 		})->paginate($n);			
+	// 	}
 
-		return $this->model ->with('filiere')->paginate($n);
-	}
+	// 	return $this->model ->with('filiere')->paginate($n);
+	// }
 
+	public function index($n, $filiere_id = null)
+    {
+        $query = $this->model->select
+                (
+                		 'etudiants.id', 
+                		 'etudiants.cne', 
+                		 'etudiants.nom', 
+                		 'etudiants.prenom', 
+                		 'etudiants.dateNaissance', 
+                		 'etudiants.situation', 
+                		 'etudiants.adresse', 
+                		 'etudiants.telephone', 
+                		 'etudiants.filiere_id'
+
+
+               )->join('filieres', 'filieres.id', '=', 'etudiants.filiere_id');
+
+        if ($filiere_id) {
+            $query->where('filiere_id', $filiere_id);
+        }
+
+        $var = $query->paginate($n);
+
+        foreach ($var as $value) {
+        	$this->filiere = Filiere::find($value->filiere_id);
+	        $etudiant[] = [
+	        			    "id"=>$value->id,
+	                        "cne"=>$value->cne,
+	                        "nom"=>$value->nom,
+	                        "prenom"=>$value->prenom,
+	                        "dateNaissance"=>$value->dateNaissance,
+	                        "photo"=>$value->photo,
+	                        "telephone"=>$value->telephone,
+	                        "situation"=>$value->situation,
+	                        "adresse"=>$value->adresse,
+	                        "filiere"=>$this->filiere
+	        		
+	        ];
+
+        }
+        
+        return ["etudiants"=>$etudiant];
+    }
 
 	/**
 	 * Create a etudiant.
@@ -128,6 +171,37 @@ class EtudiantRepository extends BaseRepository
 			
 	// 	$etudiant->delete();
 	// }
+
+	public function get($id)
+    {
+        $var = Etudiant::find($id);  
+
+        if (empty($var)) {
+            return array();
+        }
+        $this->filiere = Filiere::find($var->filiere_id);
+        $etudiant = [
+
+        		"etudiant"=> [
+
+        			"id"=>$var->id,
+                    "cne"=>$var->cne,
+                    "nom"=>$var->nom,
+                    "prenom"=>$var->prenom,
+                    "dateNaissance"=>$var->dateNaissance,
+                    "photo"=>$var->photo,
+                        "telephone"=>$var->telephone,
+                        "situation"=>$var->situation,
+                        "adresse"=>$var->adresse,
+                        "filiere"=>$this->filiere,
+                        "cv" => $var->cvs,
+                        "created_at"=>$var->created_at,
+                        "updated_at"=>$var->updated_at 
+        		]
+        ];
+
+        return $etudiant;
+    }
 
 	
 }
