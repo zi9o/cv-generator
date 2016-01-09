@@ -1,69 +1,71 @@
 ## les routes
 
-|        | GET|HEAD | cv                              | cv                | App\Http\Controllers\CvController@index
-                  |            |
-|        | GET|HEAD | cv/create                       | create-cv         | App\Http\Controllers\CvController@creat
-e                 |            |
-|        | POST     | cv/create                       | create-cv         | App\Http\Controllers\CvController@store
-                  |            |
-|        | POST     | cv/delete                       | delete-cv         | App\Http\Controllers\CvController@destr
-oy                |            |
-|        | POST     | cv/edit/{id}                    | edit-cv           | App\Http\Controllers\CvController@updat
-e                 |            |
-|        | GET|HEAD | cv/edit/{id}                    | edit-cv           | App\Http\Controllers\CvController@edit
-                  |            |
-|        | GET|HEAD | cv/etudiant/{id}                | mes-cv            | App\Http\Controllers\CvController@cvset
-udiant            |            |
-|        | GET|HEAD | cv/formation                    | cv-formation      | App\Http\Controllers\FormationControlle
-r@index           |            |
-|        | POST     | cv/formation/create             | create-formation/ | App\Http\Controllers\FormationControlle
-r@store           |            |
-|        | GET|HEAD | cv/formation/create             | create-cv         | App\Http\Controllers\FormationControlle
-r@create          |            |
-|        | POST     | cv/formation/delete             | delete-formation  | App\Http\Controllers\FormationControlle
-r@destroy         |            |
-|        | POST     | cv/formation/edit               | edit-formation    | App\Http\Controllers\FormationControlle
-r@update          |            |
-|        | GET|HEAD | cv/formation/edit/{id}          | edit-formation    | App\Http\Controllers\FormationControlle
-r@edit            |            |
-|        | GET|HEAD | cv/formation/etablissement/{id} | formations-etab   | App\Http\Controllers\FormationControlle
-r@formationsetab  |            |
-|        | GET|HEAD | cv/formation/{id}               | show-formation/   | App\Http\Controllers\FormationControlle
-r@show            |            |
-|        | GET|HEAD | cv/{id}                         | show-cv           | App\Http\Controllers\CvController@show
-                  |            |
-|        | GET|HEAD | etablissement                   | etablissement     | App\Http\Controllers\EtablissementContr
-oller@index       |            |
-|        | POST     | etablissement/create            | create-etab       | App\Http\Controllers\EtablissementContr
-oller@store       |            |
-|        | GET|HEAD | etablissement/create            | create-etab       | App\Http\Controllers\EtablissementContr
-oller@create      |            |
-|        | POST     | etablissement/delete            | delete-etab       | App\Http\Controllers\EtablissementContr
-oller@destroy     |            |
-|        | POST     | etablissement/edit              | edit-etab         | App\Http\Controllers\EtablissementContr
-oller@update      |            |
-|        | GET|HEAD | etablissement/edit/{id}         | edit-etab         | App\Http\Controllers\EtablissementContr
-oller@edit        |            |
-|        | GET|HEAD | etablissement/{id}              | show-etab         | App\Http\Controllers\EtablissementContr
-oller@show        |            |
-|        | GET|HEAD | etudiant                        | etudiants         | App\Http\Controllers\EtudiantController
-@index            |            |
-|        | POST     | etudiant/create                 | create-etudiant   | App\Http\Controllers\EtudiantController
-@store            |            |
-|        | GET|HEAD | etudiant/create                 | create-etudiant   | App\Http\Controllers\EtudiantController
-@create           |            |
-|        | POST     | etudiant/delete                 | delete-etudiant   | App\Http\Controllers\EtudiantController
-@destroy          |            |
-|        | POST     | etudiant/edit                   | edit-etudiant     | App\Http\Controllers\EtudiantController
-@update           |            |
-|        | GET|HEAD | etudiant/edit/{id}              | edit-etudiant     | App\Http\Controllers\EtudiantController
-@edit             |            |
-|        | GET|HEAD | etudiant/filiere/{id}           | etudiants_filiere | App\Http\Controllers\EtudiantController
-@etudiantsfiliere |            |
-|        | GET|HEAD | etudiant/{id}                   | show-etudiant     | App\Http\Controllers\EtudiantController
-@show             |            |
+###Method		   	URL		     		Action
+									
+   	GET			   	/cv           		Liste des cv
+   
+   	GET		 		/cv/{id}            Recupere le cv de l'id {id}
+
+ 
+ 	GET   			/cv/create      	Pour obtenir le formulaire de création d'un cv
+
+	POST     		/cv/create     		Pour créer un cv 
+
+	POST     		/cv/delete      	Pour supprimer un cv
+
+	POST     		/cv/edit 			Pour modifier un cv
+
+	GET				/cv/edit/{id}   	Pour obtenir le formulaire de modification d'un cv
+
+	GET				/cv/etudiant/{id}   liste des cvs d'un etudiant
+
+	GET|HEAD 		/cv/formation        	listes des formations d'un cv
+
+	POST    	    /cv/formation/create 	créer une formation pour un cv
 
 
+	GET				/cv/formation/create 	obtenir le formulaire de création d'une formation
+
+	POST  			/cv/formation/delete 	delete-formation
+
+	POST     		/cv/formation/edit 		edit-formation  
+
+	GET				/cv/formation/edit/{id} edit-formation  
+
+	GET				/cv/formation/etablissement/{id} 	formations-etablissement
+
+	GET				/cv/formation/{id}               	show-formation/  
+
+	GET				/etablissement                   	etablissement  
+
+	POST    		/etablissement/create 				create-etab 
+
+	GET|HEAD 		/etablissement/create            	create-etab 
+
+	POST     		/etablissement/delete        		delete-etab 
+
+	POST     		/etablissement/edit 				edit-etab 
+
+	GET|HEAD		/etablissement/edit/{id}         	edit-etab 
+
+	GET|HEAD 		/etablissement/{id}              	show-etab
+
+	GET|HEAD 		/etudiant                        	liste des etudiants     
+
+	POST   			/etudiant/create                 	formulaire de création d'un etudiant
+
+	GET				/etudiant/create                    create-etudiant 
+
+	POST     		/etudiant/delete  					delete-etudiant 
+
+	POST    		/etudiant/edit          			edit-etudiant 
+
+	GET 			/etudiant/edit/{id}              	formulaire de modification d'un etudiant
+
+	GET				/etudiant/filiere/{id}           	listes des étudiants d'une filière 
+
+	GET			 	/etudiant/{id}                   Obténir un étudiant 
+	
 ## Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
