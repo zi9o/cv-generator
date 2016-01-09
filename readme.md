@@ -1,9 +1,8 @@
 
 ## Les urls formalisés
 
-+--------+-----------+------------------------------------+----------------------+
-Method    | URI                   | nom                  	| Action
-+--------+-----------+------------------------------------+----------------------+
+
+Method    | URI                   | Nom                  	| Action
 
 POST      | /competence           | competence.store     	| 
 
@@ -98,7 +97,7 @@ PUT|PATCH | /loisir/{loisir}            | loisir.update         |
 DELETE    | /loisir/{loisir}            | loisir.destroy        | 
 
 GET|HEAD  | loisir/{loisir}/edit        | loisir.edit           | 
-+--------+-----------+------------------------------------+----------------------+
+
 <!-- ## les routes
 
 	Method		   	URL		     							Action
