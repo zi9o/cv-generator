@@ -100,91 +100,91 @@
 
 ## les routes
 
+	Method      	    URI     				  Nom          				Action
 
-	GET|HEAD    			api/etudiant                api.etudiant..index                    liste de étudiants avec ses cv
+	GET|HEAD    		api/etudiant              api.etudiant..index                    liste de étudiants avec ses cv
 
-	POST 					api/etudiant                api.etudiant..store                    ajout d'un nouveau étudiant
+	POST 				api/etudiant                api.etudiant..store                    ajout d'un nouveau étudiant
 
-	GET|HEAD    			api/etudiant/create         api.etudiant..create                    formulaire de création d'un étudiant
+	GET|HEAD    		api/etudiant/create         api.etudiant..create                    formulaire de création d'un étudiant
 
-	POST        			api/etudiant/cv             api.etudiant.cv..store                	   création d'un nouveau cv
+	POST        		api/etudiant/cv             api.etudiant.cv..store                	   création d'un nouveau cv
 
-	GET|HEAD    			api/etudiant/cv              api.etudiant.cv..index                   rien
+	GET|HEAD    		api/etudiant/cv              api.etudiant.cv..index                   rien
 
-	POST        			api/etudiant/cv/competence   api.etudiant.cv.competence.store        			création d'une nouvelle competence
+	POST        		api/etudiant/cv/competence   api.etudiant.cv.competence.store        			création d'une nouvelle competence
 
-	GET|HEAD    			api/etudiant/cv/competence   api.etudiant.cv.competence.index        			rien
+	GET|HEAD    		api/etudiant/cv/competence   api.etudiant.cv.competence.index        			rien
 
-	GET|HEAD    			api/etudiant/cv/competence/create       api.etudiant.cv.competence.create       formulaire de création d'une competence
+	GET|HEAD    		api/etudiant/cv/competence/create       api.etudiant.cv.competence.create       formulaire de création d'une competence
 
-	DELETE      			api/etudiant/cv/competence/{id}        	api.etudiant.cv.competence.destroy      suppression de la compétence de l' {id}
+	DELETE      		api/etudiant/cv/competence/{id}        	api.etudiant.cv.competence.destroy      suppression de la compétence de l' {id}
 
-	PUT|PATCH   			api/etudiant/cv/competence/{id}      	api.etudiant.cv.competence.update       modification de la compétence de l' {id}
+	PUT|PATCH   		api/etudiant/cv/competence/{id}      	api.etudiant.cv.competence.update       modification de la compétence de l' {id}
 
-	GET|HEAD    			api/etudiant/cv/competence/{id}         api.etudiant.cv.competence.show         obtenir la compétence de l' {id}
+	GET|HEAD    		api/etudiant/cv/competence/{id}         api.etudiant.cv.competence.show         obtenir la compétence de l' {id}
 
-	GET|HEAD    			api/etudiant/cv/competence/{id}/edit    api.etudiant.cv.competence.edit         formulaire de modification de la compétence de l' {id}
+	GET|HEAD    		api/etudiant/cv/competence/{id}/edit    api.etudiant.cv.competence.edit         formulaire de modification de la compétence de l' {id}
 
-	GET|HEAD    			api/etudiant/cv/create                  api.etudiant.cv..create                 formulaire de création d'un cv
+	GET|HEAD    		api/etudiant/cv/create                  api.etudiant.cv..create                 formulaire de création d'un cv
 
-	POST        			api/etudiant/cv/etablissement            api.etudiant.cv.etablissement.store     création d'un nouveau etablissement
+	POST        		api/etudiant/cv/etablissement            api.etudiant.cv.etablissement.store     création d'un nouveau etablissement
 
-	GET|HEAD    			api/etudiant/cv/etablissement            api.etudiant.cv.etablissement.index     rien
+	GET|HEAD    		api/etudiant/cv/etablissement            api.etudiant.cv.etablissement.index     rien
 
-	GET|HEAD    			api/etudiant/cv/etablissement/create     api.etudiant.cv.etablissement.create    formulaire de création d'un etablissement
+	GET|HEAD    		api/etudiant/cv/etablissement/create     api.etudiant.cv.etablissement.create    formulaire de création d'un etablissement
 
-	GET|HEAD    			api/etudiant/cv/etablissement/{id}        api.etudiant.cv.etablissement.show      obtenir l'etablissement de l' {id}
+	GET|HEAD    		api/etudiant/cv/etablissement/{id}        api.etudiant.cv.etablissement.show      obtenir l'etablissement de l' {id}
 
-	PUT|PATCH   			api/etudiant/cv/etablissement/{id}        api.etudiant.cv.etablissement.update    modification de l'etablissement de l' {id}
+	PUT|PATCH   		api/etudiant/cv/etablissement/{id}        api.etudiant.cv.etablissement.update    modification de l'etablissement de l' {id}
 
-	DELETE      			api/etudiant/cv/etablissement/{id}        api.etudiant.cv.etablissement.destroy   suppression de l'etablissement de l' {id}
+	DELETE      		api/etudiant/cv/etablissement/{id}        api.etudiant.cv.etablissement.destroy   suppression de l'etablissement de l' {id}
 
-	 GET|HEAD    api/etudiant/cv/etablissement/{etablissement}/edit   api.etudiant.cv.etablissement.edit     App\Http\Controllers\EtablissementController@edit
+	GET|HEAD    		api/etudiant/cv/etablissement/{id}/edit   api.etudiant.cv.etablissement.edit     formulaire de modification de l'etablissement de l' {id}
 
-	 GET|HEAD    api/etudiant/cv/experience                           api.etudiant.cv.experience.index        App\Http\Controllers\ExperienceController@index
+	GET|HEAD    		api/etudiant/cv/experience                api.etudiant.cv.experience.index        		rien
 
-	 POST        api/etudiant/cv/experience                           api.etudiant.cv.experience.store        App\Http\Controllers\ExperienceController@store
+	POST        		api/etudiant/cv/experience                api.etudiant.cv.experience.store        		création d'une nouvelle experience
 
- GET|HEAD    api/etudiant/cv/experience/create                    api.etudiant.cv.experience.create       App\Http\Controllers\ExperienceController@create
+ 	GET|HEAD    		api/etudiant/cv/experience/create         api.etudiant.cv.experience.create       		formulaire de création d'une experience	
 
- PUT|PATCH   api/etudiant/cv/experience/{experience}              api.etudiant.cv.experience.update       App\Http\Controllers\ExperienceController@update
+ 	PUT|PATCH   		api/etudiant/cv/experience/{id}           api.etudiant.cv.experience.update       		modification de l'experience de l' {id}
 
- DELETE      api/etudiant/cv/experience/{experience}              api.etudiant.cv.experience.destroy      App\Http\Controllers\ExperienceController@destroy
+ 	DELETE      		api/etudiant/cv/experience/{id}   		  api.etudiant.cv.experience.destroy      		suppression de l'experience de l'{id}
 
- GET|HEAD    api/etudiant/cv/experience/{experience}              api.etudiant.cv.experience.show         App\Http\Controllers\ExperienceController@show
+ 	GET|HEAD    		api/etudiant/cv/experience/{id}           api.etudiant.cv.experience.show     			otention de l'experience de l'{id}
 
- GET|HEAD    api/etudiant/cv/experience/{experience}/edit         api.etudiant.cv.experience.edit         App\Http\Controllers\ExperienceController@edit
+ 	GET|HEAD    		api/etudiant/cv/experience/{id}/edit      api.etudiant.cv.experience.edit         		formulaire de modification de l'experience de l' {id}
 
- GET|HEAD    api/etudiant/cv/formation                            api.etudiant.cv.formation.index         App\Http\Controllers\FormationController@index
+ 	GET|HEAD    		api/etudiant/cv/formation                 api.etudiant.cv.formation.index         		rien
 
- POST        api/etudiant/cv/formation                            api.etudiant.cv.formation.store         App\Http\Controllers\FormationController@store
+ 	POST        		api/etudiant/cv/formation                 api.etudiant.cv.formation.store         		création d'une nouvelle formation
 
- GET|HEAD    api/etudiant/cv/formation/create                     api.etudiant.cv.formation.create        App\Http\Controllers\FormationController@create
+ 	GET|HEAD    		api/etudiant/cv/formation/create          api.etudiant.cv.formation.create        		formulaire de création d'une formation	
 
- GET|HEAD    api/etudiant/cv/formation/{formation}                api.etudiant.cv.formation.show          App\Http\Controllers\FormationController@show
+ 	GET|HEAD    		api/etudiant/cv/formation/{id}            api.etudiant.cv.formation.show      			otention de la formation de l'{id}
 
- PUT|PATCH   api/etudiant/cv/formation/{formation}                api.etudiant.cv.formation.update        App\Http\Controllers\FormationController@update
+ 	PUT|PATCH   		api/etudiant/cv/formation/{id}            api.etudiant.cv.formation.update        		modification de la formation de l' {id}
 
- DELETE      api/etudiant/cv/formation/{formation}                api.etudiant.cv.formation.destroy       App\Http\Controllers\FormationController@destroy
+ 	DELETE      		api/etudiant/cv/formation/{formation}     api.etudiant.cv.formation.destroy       		suppression de la formation de l'{id}
 
- GET|HEAD    api/etudiant/cv/formation/{formation}/edit           api.etudiant.cv.formation.edit          App\Http\Controllers\FormationController@edit
+ 	GET|HEAD    		api/etudiant/cv/formation/{id}/edit       api.etudiant.cv.formation.edit          		formulaire modification de la formation de l' {id}	
 
- POST        api/etudiant/cv/langue                               api.etudiant.cv.langue.store            App\Http\Controllers\LangueController@store
+ 	POST        		api/etudiant/cv/langue                    api.etudiant.cv.langue.store       		 création d'une nouvelle langue
 
- GET|HEAD    api/etudiant/cv/langue                               api.etudiant.cv.langue.index            App\Http\Controllers\LangueController@index
+ 	GET|HEAD    		api/etudiant/cv/langue                    api.etudiant.cv.langue.index            	 Rien
 
- GET|HEAD    api/etudiant/cv/langue/create                        api.etudiant.cv.langue.create           App\Http\Controllers\LangueController@create
+ 	GET|HEAD    		api/etudiant/cv/langue/create             api.etudiant.cv.langue.create           	 formulaire de création d'une langue	
 
- DELETE      api/etudiant/cv/langue/{langue}                      api.etudiant.cv.langue.destroy          App\Http\Controllers\LangueController@destroy
+ 	DELETE      		api/etudiant/cv/langue/{id}               api.etudiant.cv.langue.destroy          	 suppression de la langue de l'{id}
 
- PUT|PATCH   api/etudiant/cv/langue/{langue}                      api.etudiant.cv.langue.update           App\Http\Controllers\LangueController@update
+ 	PUT|PATCH   		api/etudiant/cv/langue/{id}           	  api.etudiant.cv.langue.update      		 modification de la langue de l' {id}
 
- GET|HEAD    api/etudiant/cv/langue/{langue}                      api.etudiant.cv.langue.show             App\Http\Controllers\LangueController@show
+ 	GET|HEAD    		api/etudiant/cv/langue/{id}               api.etudiant.cv.langue.show             	 otention de la langue de l'{id}
 
- GET|HEAD    api/etudiant/cv/langue/{langue}/edit                 api.etudiant.cv.langue.edit             App\Http\Controllers\LangueController@edit
+ 	GET|HEAD    		api/etudiant/cv/langue/{id}/edit          api.etudiant.cv.langue.edit        		 formulaire modification de la langue de l' {id}	
 
-
- POST        api/etudiant/cv/loisir                               api.etudiant.cv.loisir.store            App\Http\Controllers\LoisirController@store
+ 	POST        		api/etudiant/cv/loisir                               api.etudiant.cv.loisir.store            App\Http\Controllers\LoisirController@store
 
  GET|HEAD    api/etudiant/cv/loisir                               api.etudiant.cv.loisir.index            App\Http\Controllers\LoisirController@index
 
