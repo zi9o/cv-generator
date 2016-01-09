@@ -100,47 +100,47 @@
 
 ## les routes
 
-	Method      	    URI     				  Nom          				Action
+<h1>	Method      	    URI     				  Nom          				Action </h1>
 
-	GET|HEAD    		api/etudiant              api.etudiant..index                    liste de étudiants avec ses cv
+	GET|HEAD    		api/etudiant                            api.etudiant..index               liste de étudiants avec ses cv
 
-	POST 				api/etudiant                api.etudiant..store                    ajout d'un nouveau étudiant
+	POST 				api/etudiant                            api.etudiant..store               ajout d'un nouveau étudiant
 
-	GET|HEAD    		api/etudiant/create         api.etudiant..create                    formulaire de création d'un étudiant
+	GET|HEAD    		api/etudiant/create                     api.etudiant..create              formulaire de création d'un étudiant
 
-	POST        		api/etudiant/cv             api.etudiant.cv..store                	   création d'un nouveau cv
+	POST        		api/etudiant/cv                         api.etudiant.cv..store               création d'un nouveau cv
 
-	GET|HEAD    		api/etudiant/cv              api.etudiant.cv..index                   rien
+	GET|HEAD    		api/etudiant/cv                         api.etudiant.cv..index               rien
 
-	POST        		api/etudiant/cv/competence   api.etudiant.cv.competence.store        			création d'une nouvelle competence
+	POST        		api/etudiant/cv/competence              api.etudiant.cv.competence.store        	   création d'une nouvelle competence
 
-	GET|HEAD    		api/etudiant/cv/competence   api.etudiant.cv.competence.index        			rien
+	GET|HEAD    		api/etudiant/cv/competence              api.etudiant.cv.competence.index        	   rien
 
-	GET|HEAD    		api/etudiant/cv/competence/create       api.etudiant.cv.competence.create       formulaire de création d'une competence
+	GET|HEAD    		api/etudiant/cv/competence/create       api.etudiant.cv.competence.create              formulaire de création d'une competence
 
-	DELETE      		api/etudiant/cv/competence/{id}        	api.etudiant.cv.competence.destroy      suppression de la compétence de l' {id}
+	DELETE      		api/etudiant/cv/competence/{id}        	api.etudiant.cv.competence.destroy             suppression de la compétence de l' {id}
 
-	PUT|PATCH   		api/etudiant/cv/competence/{id}      	api.etudiant.cv.competence.update       modification de la compétence de l' {id}
+	PUT|PATCH   		api/etudiant/cv/competence/{id}      	api.etudiant.cv.competence.update              modification de la compétence de l' {id}
 
-	GET|HEAD    		api/etudiant/cv/competence/{id}         api.etudiant.cv.competence.show         obtenir la compétence de l' {id}
+	GET|HEAD    		api/etudiant/cv/competence/{id}         api.etudiant.cv.competence.show                obtenir la compétence de l' {id}
 
-	GET|HEAD    		api/etudiant/cv/competence/{id}/edit    api.etudiant.cv.competence.edit         formulaire de modification de la compétence de l' {id}
+	GET|HEAD    		api/etudiant/cv/competence/{id}/edit    api.etudiant.cv.competence.edit                formulaire de modification de la compétence de l' {id}
 
-	GET|HEAD    		api/etudiant/cv/create                  api.etudiant.cv..create                 formulaire de création d'un cv
+	GET|HEAD    		api/etudiant/cv/create                  api.etudiant.cv..create              formulaire de création d'un cv
 
-	POST        		api/etudiant/cv/etablissement            api.etudiant.cv.etablissement.store     création d'un nouveau etablissement
+	POST        		api/etudiant/cv/etablissement            api.etudiant.cv.etablissement.store création d'un nouveau etablissement
 
-	GET|HEAD    		api/etudiant/cv/etablissement            api.etudiant.cv.etablissement.index     rien
+	GET|HEAD    		api/etudiant/cv/etablissement            api.etudiant.cv.etablissement.index  rien
 
 	GET|HEAD    		api/etudiant/cv/etablissement/create     api.etudiant.cv.etablissement.create    formulaire de création d'un etablissement
 
-	GET|HEAD    		api/etudiant/cv/etablissement/{id}        api.etudiant.cv.etablissement.show      obtenir l'etablissement de l' {id}
+	GET|HEAD    		api/etudiant/cv/etablissement/{id}        api.etudiant.cv.etablissement.show  obtenir l'etablissement de l' {id}
 
 	PUT|PATCH   		api/etudiant/cv/etablissement/{id}        api.etudiant.cv.etablissement.update    modification de l'etablissement de l' {id}
 
 	DELETE      		api/etudiant/cv/etablissement/{id}        api.etudiant.cv.etablissement.destroy   suppression de l'etablissement de l' {id}
 
-	GET|HEAD    		api/etudiant/cv/etablissement/{id}/edit   api.etudiant.cv.etablissement.edit     formulaire de modification de l'etablissement de l' {id}
+	GET|HEAD    		api/etudiant/cv/etablissement/{id}/edit   api.etudiant.cv.etablissement.edit  formulaire de modification de l'etablissement de l' {id}
 
 	GET|HEAD    		api/etudiant/cv/experience                api.etudiant.cv.experience.index        		rien
 
@@ -208,11 +208,11 @@
 
 	DELETE     			api/etudiant/{id}                         api.etudiant.destroy             suppression de l'etudiant de l'{id}
 
-	PUT|PATCH  			api/etudiant/{id}                   api.etudiant.update              modification de l'etudiant de l' {id}
+	PUT|PATCH  			api/etudiant/{id}                         api.etudiant.update              modification de l'etudiant de l' {id}
 
-	GET|HEAD 			api/etudiant/{id}                   api.etudiant.show                otention de l'etudiant de l'{id}
+	GET|HEAD 			api/etudiant/{id}                         api.etudiant.show                otention de l'etudiant de l'{id}
 
-	GET|HEAD  			api/etudiant/{id}/edit              api.etudiant.edit                formulaire de modification de l'etudiant de l' {id}
+	GET|HEAD  			api/etudiant/{id}/edit                    api.etudiant.edit                formulaire de modification de l'etudiant de l' {id}
 
 <!-- ## les routes
 
