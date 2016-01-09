@@ -2,111 +2,111 @@
 ## Les urls formalisés
 
 
-Method    | URI                   | Nom                  	| Action
+	Method      	  	URI     					   Nom          		Action
 
-POST      | /competence           | competence.store     	| 
+	POST         	    /competence              	   competence.store 
 
-GET       | /competence           | competence.index     	| 
+	GET|HEAD          	/competence                    competence.index   
 
-GET       | /competence/create    | competence.create    	| 
+	GET|HEAD          	/competence/create             competence.create 
 
-PUT		  | /competence/{id}      | competence.update      	| 
+	PUT|PATH		    /competence/{id}               competence.update      	 
 
-DELETE    | /competence/{id}      | competence.destroy    	| 
+	DELETE       		/competence/{id}        	   competence.destroy      
 
-GET 	  | /competence/{id}      | competence.show       	| 
+	GET|HEAD 	    	/competence/{id}        	   competence.show  
 
-POST      | /cv                   | cv.store              	| 
+	POST         		/cv                     	   cv.store  
 
-GET		  | /cv                   | cv.index              	| 
+	GET|HEAD		    /cv                      	   cv.index     
 
-GET       | /cv/create            | cv.create             	| 
+	GET|HEAD          	/cv/create               	   cv.create             	
 
-PUT|PATCH | /cv/{id}              | cv.update             	| 
+	PUT|PATH			/cv/{id}                	   cv.update          	   
 
-GET|HEAD  | /cv/{id}              | cv.show               	| 
-/
-DELETE    | /cv/{cv}              | cv.destroy            | 
+	GET|HEAD  	     	/cv/{id}                 	   cv.show             
+	
+	DELETE       		/cv/{cv}                       cv.destroy               
 
-GET|HEAD  | /cv/{cv}/edit         | cv.edit               | 
+	GET|HEAD  			/cv/{cv}/edit           	   cv.edit                  
 
-POST      | /etablissement        | etablissement.store   | 
+	POST         		/etablissement           	   etablissement.store      
 
-GET		  | /etablissement        		| etablissement.index   | 
+	GET|HEAD		    /etablissement        		   etablissement.index      
 
-GET		  | /etablissement/create 		| etablissement.create  | 
+	GET|HEAD		    /etablissement/create 		   etablissement.create     
 
-PUT|PATCH | /etablissement/{id}   		| etablissement.update  | 
+	PUT|PATH           	/etablissement/{id}   		   etablissement.update     
 
-GET|HEAD  | /etablissement/{id}   		| etablissement.show    | 
+	GET|HEAD          	/etablissement/{id}   		   etablissement.show       
 
-DELETE    | /etablissement/{id}    		| etablissement.destroy | 
+	DELETE       		/etablissement/{id}    		   etablissement.destroy    
 
-GET|HEAD  | /etablissement/{id}/edit 	| etablissement.edit    | 
+	GET|HEAD          	/etablissement/{id}/edit 	   etablissement.edit       
 
-POST      | /experience                 | experience.store      | 
+	POST         		/experience                    experience.store         
 
-GET|HEAD  | /experience                 | experience.index      | 
+	GET|HEAD          	/experience                    experience.index         
 
-GET|HEAD  | /experience/create          | experience.create     | 
+	GET|HEAD          	/experience/create             experience.create        
 
-DELETE    | /experience/{id}            | experience.destroy    | 
+	DELETE       		/experience/{id}               experience.destroy       
 
-GET|HEAD  | /experience/{id}            | experience.show       | 
+	GET|HEAD          	/experience/{id}               experience.show          
 
-PUT|PATCH | /experience/{id}            | experience.update     | 
+	PUT|PATH           	/experience/{id}               experience.update        
 
-GET|HEAD  | /experience/{id}/edit       | experience.edit       | 
+	GET|HEAD          	/experience/{id}/edit          experience.edit          
 
-POST      | /formation                  | formation.store       | 
+	POST         		/formation                     formation.store          
 
-GET|HEAD  | /formation                  | formation.index       |
+	GET|HEAD          	/formation                     formation.index         
 
-GET|HEAD  | /formation/create           | formation.create      |
+	GET|HEAD          	/formation/create              formation.create        
 
-DELETE    | /formation/{id}             | formation.destroy    | 
+	DELETE       		/formation/{id}                formation.destroy       
 
-PUT|PATCH | /formation/{id}             | formation.update      | 
+	PUT|PATH           	/formation/{id}                formation.update         
 
-GET|HEAD  | /formation/{id}             | formation.show        | 
+	GET|HEAD          	/formation/{id}                formation.show           
 
-GET|HEAD  | /formation/{id}/edit        | formation.edit        |
+	GET|HEAD          	/formation/{id}/edit           formation.edit          
 
-GET|HEAD  | /langue                     | langue.index          | 
+	GET|HEAD          	/langue                        langue.index             
 
-POST      | /langue                     | langue.store          | 
+	POST         		/langue                        langue.store             
 
-GET|HEAD  | /langue/create              | langue.create         | 
+	GET|HEAD          	/langue/create                 langue.create            
 
-GET|HEAD  | /langue/{langue}            | langue.show           | 
+	GET|HEAD          	/langue/{langue}               langue.show              
 
-PUT|PATCH | langue/{langue}             | langue.update         | 
+	PUT|PATH           	langue/{langue}                langue.update            
 
-DELETE    | langue/{langue}             | langue.destroy        | 
+	DELETE       		/langue/{langue}               langue.destroy           
 
-GET|HEAD  | langue/{langue}/edit        | langue.edit           | 
+	GET|HEAD          	langue/{langue}/edit           langue.edit              
 
-GET|HEAD  | /loisir                     | loisir.index          | 
+	GET|HEAD          	/loisir                        loisir.index             
 
-POST      | /loisir                     | loisir.store          | 
+	POST         		/loisir                        loisir.store             
 
-GET|HEAD  | /loisir/{loisir}            | loisir.show           | 
+	GET|HEAD          	/loisir/{loisir}               loisir.show              
 
-PUT|PATCH | /loisir/{loisir}            | loisir.update         | 
+	PUT|PATH           	/loisir/{loisir}               loisir.update            
 
-DELETE    | /loisir/{loisir}            | loisir.destroy        | 
+	DELETE       		/loisir/{loisir}               loisir.destroy           
 
-GET|HEAD  | loisir/{loisir}/edit        | loisir.edit           | 
+	GET|HEAD          	/loisir/{loisir}/edit          loisir.edit              
 
 <!-- ## les routes
 
 	Method		   	URL		     							Action
 									
-   	GET			   	/cv           							Liste des cv
+   	GET|HEAD			   	/cv           							Liste des cv
    
-   	GET		 		/cv/{id}            					Recupere le cv de l'id {id}
+   	GET|HEAD		 		/cv/{id}            					Recupere le cv de l'id {id}
  
- 	GET   			/cv/create      						Pour obtenir le formulaire de création d'un cv
+ 	GET|HEAD   			/cv/create      						Pour obtenir le formulaire de création d'un cv
 
 	POST     		/cv/create     							Pour créer un cv 
 
@@ -114,55 +114,55 @@ GET|HEAD  | loisir/{loisir}/edit        | loisir.edit           |
 
 	POST     		/cv/edit 								Pour modifier un cv
 
-	GET				/cv/edit/{id}   						Pour obtenir le formulaire de modification d'un cv
+	GET|HEAD				/cv/edit/{id}   						Pour obtenir le formulaire de modification d'un cv
 
-	GET				/cv/etudiant/{id}   					liste des cvs d'un etudiant
+	GET|HEAD				/cv/etudiant/{id}   					liste des cvs d'un etudiant
 
-	GET|HEAD 		/cv/formation        					listes des formations d'un cv
+	GET|HEAD      		/cv/formation        					listes des formations d'un cv
 
 	POST    	    /cv/formation/create 					créer une formation pour un cv
 
-	GET				/cv/formation/create 					obtenir le formulaire de création d'une formation
+	GET|HEAD				/cv/formation/create 					obtenir le formulaire de création d'une formation
 
 	POST  			/cv/formation/delete 					delete-formation
 
 	POST     		/cv/formation/edit 						edit-formation  
 
-	GET				/cv/formation/edit/{id} 				edit-formation  
+	GET|HEAD				/cv/formation/edit/{id} 				edit-formation  
 
-	GET				/cv/formation/etablissement/{id} 		formations-etablissement
+	GET|HEAD				/cv/formation/etablissement/{id} 		formations-etablissement
 
-	GET				/cv/formation/{id}               		show-formation/  
+	GET|HEAD				/cv/formation/{id}               		show-formation/  
 
-	GET				/etablissement                   		etablissement  
+	GET|HEAD				/etablissement                   		etablissement  
 
 	POST    		/etablissement/create 					create-etab 
 
-	GET|HEAD 		/etablissement/create            		create-etab 
+	GET|HEAD      		/etablissement/create            		create-etab 
 
 	POST     		/etablissement/delete        			delete-etab 
 
 	POST     		/etablissement/edit 					edit-etab 
 
-	GET|HEAD		/etablissement/edit/{id}         		edit-etab 
+	GET|HEAD     		/etablissement/edit/{id}         		edit-etab 
 
-	GET|HEAD 		/etablissement/{id}              		show-etab
+	GET|HEAD      		/etablissement/{id}              		show-etab
 
-	GET|HEAD 		/etudiant                        		liste des etudiants     
+	GET|HEAD      		/etudiant                        		liste des etudiants     
 
 	POST   			/etudiant/create                 		formulaire de création d'un etudiant
 
-	GET				/etudiant/create                    	create-etudiant 
+	GET|HEAD				/etudiant/create                    	create-etudiant 
 
 	POST     		/etudiant/delete  						delete-etudiant 
 
 	POST    		/etudiant/edit          				edit-etudiant 
 
-	GET 			/etudiant/edit/{id}              		formulaire de modification d'un etudiant
+	GET|HEAD 			/etudiant/edit/{id}              		formulaire de modification d'un etudiant
 
-	GET				/etudiant/filiere/{id}           		listes des étudiants d'une filière 
+	GET|HEAD				/etudiant/filiere/{id}           		listes des étudiants d'une filière 
 
-	GET			 	/etudiant/{id}                   		Obténir un étudiant 
+	GET|HEAD			 	/etudiant/{id}                   		Obténir un étudiant 
  -->
 ## Laravel PHP Framework
 
