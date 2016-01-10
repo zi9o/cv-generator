@@ -69,20 +69,30 @@ Route::post('password', 'Auth\PasswordController@postEmail');
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 // Home
-Route::get('/', [
+
+Route::get('/home', [
 	'uses' => 'homeController@index', 
 	'as' => 'home'
+]);
+Route::get('/', [
+	'uses' => 'homeController@home', 
+	'as' => 'accueil'
 ]);
 
 // etudiant
 
 Route::get('etudiant',  [
-	'uses' => 'etudiantController@getIndex',
-	'as' => 'index'
+	'uses' => 'etudiantController@index',
+	'as' => 'etudiant'
+]);
+
+Route::get('etudiant/cv/create',  [
+	'uses' => 'etudiantController@create',
+	'as' => 'etudiant.cv.create'
 ]);
 Route::get('etudiant/cv',  [
 	'uses' => 'etudiantController@getCvs',
-	'as' => 'index'
+	'as' => 'etudiant.cv'
 ]);
 
 Route::get('etudiant/cv/{id}',  [

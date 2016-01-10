@@ -238,14 +238,14 @@
                         	<li class="text-muted menu-title">Menu</li>
 
 							             <li>
-                                <a href="cv" class="waves-effect"><i class="ti-home"></i> <span> Accueil </span> </a>
+                                <a href="etudiant" class="waves-effect"><i class="ti-home"></i> <span> Accueil </span> </a>
                             </li>
                             <li>
-                                <a href="create" class="waves-effect"><i class="ti-pencil-alt"></i><span> Nouveau cv </span> </a>
+                                <a href="etudiant/cv/create" class="waves-effect"><i class="ti-pencil-alt"></i><span> Nouveau cv </span> </a>
                             </li>
 
                             <li>
-                                <a href="show" class="waves-effect"><i class="ti-menu-alt"></i> <span> Mes cvs</span> </a>
+                                <a href="etudiant/cv" class="waves-effect"><i class="ti-menu-alt"></i> <span> Mes cvs</span> </a>
                             </li>
                         </ul>
                         <div class="clearfix"></div>

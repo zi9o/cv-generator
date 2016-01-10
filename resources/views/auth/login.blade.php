@@ -9,7 +9,7 @@
 			            </div> 
 			            	
 			            <div class="panel-body">
-			            	<form class="form-horizontal m-t-20" action="index.html">
+			            	<form class="form-horizontal m-t-20" action="{{ url('login') }}">
 			                
 				                <div class="form-group ">
 				                    <div class="col-xs-12">

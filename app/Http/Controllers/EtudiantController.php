@@ -15,20 +15,17 @@ use App\Models\Langue;
 use App\Models\Etablissement;
 use App\Models\Etudiant;
 
-class etudiantCvController extends Controller
+class etudiantController extends Controller
 {
     public function index()
-    {
-        $cvs = Cv::get();
-        $etudiants = Etudiant::get();       
-        return view('etudiant-cv.index', compact('etudiants'));
+    {       
+        return view('etudiant.index');
     }
 
     public function create()
     {
-        $etudiants = Etudiant::get();
-        //return $etudiants;
-    	return view('etudiant-cv.create');
+        
+    	return view('etudiant.create');
     }
 
     /**
