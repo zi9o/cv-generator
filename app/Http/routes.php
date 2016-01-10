@@ -17,75 +17,78 @@
 
 Route::group (['prefix' =>  'api'], function ()
 {
-	Route::resource('etudiant', 'EtudiantController');
+	Route::resource('etudiant', 'Api\EtudiantController');
 	Route::group(['prefix' =>  'etudiant'], function (){
-		Route::resource('cv', 'CvController');
+		Route::resource('cv', 'Api\CvController');
 		Route::get('filiere/{id}', [
-			'uses' => 'EtudiantController@etudiantsfiliere',
+			'uses' => 'Api\EtudiantController@etudiantsfiliere',
 			'as' => 'filiere.etudiants'
 		])->where('id', '[0-9]+');
 		Route::group (['prefix' =>  'cv'], function ()
 		{
 			// Route::get('/etudiant/{id}', 'CvController@');
 			// Route::get('/', 'CvController');
-			Route::resource('formation', 'FormationController') ;
-			Route::resource('etablissement', 'EtablissementController') ;
-			Route::resource('competence', 'CompetenceController') ;
+			Route::resource('formation', 'Api\FormationController') ;
+			Route::resource('etablissement', 'Api\EtablissementController') ;
+			Route::resource('competence', 'Api\CompetenceController') ;
 
 				/******           nawal           *******/
 
-			Route::resource('experience', 'ExperienceController') ;
-			Route::resource('loisir', 'LoisirController') ;
-			Route::resource('langue', 'LangueController') ;
+			Route::resource('experience', 'Api\ExperienceController') ;
+			Route::resource('loisir', 'Api\LoisirController') ;
+			Route::resource('langue', 'Api\LangueController') ;
 		});
 	});
 });
 
 
 
-// Route::get('auth/login', [
-// 	'uses' => 'Auth\AuthController@getLogin',
-// 	'as' => 'login'
-// ]);
-// Route::post('auth/login',[
-// 	'uses' => 'Auth\AuthController@postLogin',
-// 	'as' => 'login'
-// ]);
+Route::get('login', [
+	'uses' => 'Auth\AuthController@getLogin',
+	'as' => 'login'
+]);
+Route::post('login',[
+	'uses' => 'Auth\AuthController@postLogin',
+	'as' => 'login'
+]);
 
-// Route::get('auth/login', [
-// 	'uses' => 'Auth\AuthController@getLogout',
-// 	'as' => 'logout'
-// ]);
+Route::get('auth/logout', [
+	'uses' => 'Auth\AuthController@getLogout',
+	'as' => 'logout'
+]);
 
-// // Registration routes...
-// Route::get('auth/register', 'Auth\AuthController@getRegister');
-// Route::post('auth/register', 'Auth\AuthController@postRegister');
+// Registration routes...
+Route::get('register', 'Auth\AuthController@getRegister');
+Route::post('register', 'Auth\AuthController@postRegister');
 
-// // Home
-// Route::get('/', [
-// 	'uses' => 'etudiantCvController@index', 
-// 	'as' => 'home'
-// ]);
+// Password reset link request routes...
+Route::get('password', 'Auth\PasswordController@getEmail');
+Route::post('password', 'Auth\PasswordController@postEmail');
 
-// Route::get('/register', [
-// 	'uses' => 'HomeController@register', 
-// 	'as' => 'register'
-// ]);
+// Password reset routes...
+Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
+Route::post('password/reset', 'Auth\PasswordController@postReset');
+// Home
+Route::get('/', [
+	'uses' => 'homeController@index', 
+	'as' => 'home'
+]);
 
-// Route::get('/login', [
-// 	'uses' => 'HomeController@index', 
-// 	'as' => 'login'
-// ]);
+// etudiant
 
-// Route::get('/cv',  [
-// 	'uses' => 'etudiantCvController@index',
-// 	'as' => 'index'
-// ]);
+Route::get('etudiant',  [
+	'uses' => 'etudiantController@getIndex',
+	'as' => 'index'
+]);
+Route::get('etudiant/cv',  [
+	'uses' => 'etudiantController@getCvs',
+	'as' => 'index'
+]);
 
-// Route::get('/cv/{id}',  [
-// 	'uses' => 'etudiantCvController@index',
-// 	'as' => 'index'
-// ])->where('id', '[0-9]+');
+Route::get('etudiant/cv/{id}',  [
+	'uses' => 'etudiantController@getCv',
+	'as' => 'index'
+])->where('id', '[0-9]+');
 
 // Route::get('/{id}',  [
 // 	'uses' => 'etudiantCvController@show',

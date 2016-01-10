@@ -29,15 +29,15 @@ class FormationRepository extends BaseRepository {
     /**
      * Create a new FormationRepository instance.
      *
-     * @param  App\Models\Formation $Formation
+     * @param  App\Models\Formation $formation
      * @param  App\Models\Tag $tag
      * @param  App\Models\Comment $comment
      * @return void
      *
      */
-    public function __construct(Formation $Formation, Cv $cv, Etablissement $etablissement) 
+    public function __construct(Formation $formation, Cv $cv, Etablissement $etablissement) 
     {
-        $this->model = $Formation;
+        $this->model = $formation;
         $this->cv = $cv;
         $this->etablissement = $etablissement;
 
@@ -46,7 +46,7 @@ class FormationRepository extends BaseRepository {
     /**
      * Create or update a Formation.
      *
-     * @param  App\Models\Formation $Formation
+     * @param  App\Models\Formation $formation
      * @param  array  $inputs
      * @param  bool   $user_id
      * @return App\Models\Formation
@@ -62,7 +62,7 @@ class FormationRepository extends BaseRepository {
         if($this->cv != null) {
             $this->model->cv_id = $this->cv->id;
         }
-        $this->etablissement = Cv::find(intval($inputs['etablissement']));
+        $this->etablissement = Etablissement::find(intval($inputs['etablissement']));
         if($this->etablissement != null) {
             $this->model->etablissement_id = $this->etablissement->id;
         }
@@ -180,7 +180,7 @@ class FormationRepository extends BaseRepository {
      */
     public function show($slug)
     {
-        $Formation = $this->model->with('user', 'tags')->whereSlug($slug)->firstOrFail();
+        $formation = $this->model->with('user', 'tags')->whereSlug($slug)->firstOrFail();
 
         $comments = $this->comment
                 ->whereFormation_id($this->model->id)
@@ -196,10 +196,10 @@ class FormationRepository extends BaseRepository {
     /**
      * Get Formation collection.
      *
-     * @param  App\Models\Formation $Formation
+     * @param  App\Models\Formation $formation
      * @return array
      */
-    public function edit($Formation)
+    public function edit($formation)
     {
         $tags = [];
 
@@ -231,7 +231,7 @@ class FormationRepository extends BaseRepository {
      */
     public function updateSeen($inputs, $id)
     {
-        $Formation = $this->getById($id);
+        $formation = $this->getById($id);
 
         $this->model->seen = $inputs['seen'] == 'true';
 
@@ -247,7 +247,7 @@ class FormationRepository extends BaseRepository {
      */
     public function updateActive($inputs, $id)
     {
-        $Formation = $this->getById($id);
+        $formation = $this->getById($id);
 
         $this->model->active = $inputs['active'] == 'true';
 
@@ -256,10 +256,10 @@ class FormationRepository extends BaseRepository {
     /**
      * Destroy a Formation.
      *
-     * @param  App\Models\Formation $Formation
+     * @param  App\Models\Formation $formation
      * @return void
      */
-    // public function destroy($Formation) {
+    // public function destroy($formation) {
     //     $this->model->tags()->detach();
 
     //     $this->model->delete();

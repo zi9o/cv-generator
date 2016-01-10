@@ -47,7 +47,10 @@
               margin-left: 170px;
           }
 
-          
+          #panelBody{
+              min-height: 35em;
+              padding: 1em;
+          }
 
           #autre{
               clear: both;
@@ -264,10 +267,11 @@
               <!-- Page-Title -->
                       <div class="row">
                           <div class="col-sm-12">
+                            <div class="panel panel-primary" id="panelBody">
                             
                             @yield('contenu')   
             
-            
+                            </div>
 
                         </div>
                       </div>
@@ -276,14 +280,17 @@
           </div>  
 			
 
-		<script type="text/javascript" src="https://cvmkr.com/public/lang/en.js"></script>
+		    <script type="text/javascript" src="https://cvmkr.com/public/lang/en.js"></script>
 
-		<script type="text/javascript" src="https://cvmkr.com/public/?js=cleditor,global"></script>
+		    <script type="text/javascript" src="https://cvmkr.com/public/?js=cleditor,global"></script>
 
 		
         <script src="assets/plugins/peity/jquery.peity.min.js"></script>
 
         <!-- jQuery  -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        
         <script src="assets/plugins/waypoints/lib/jquery.waypoints.js"></script>
         <script src="assets/plugins/counterup/jquery.counterup.min.js"></script>
 

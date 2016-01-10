@@ -1,15 +1,38 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-
+use App\Repositories\EtudiantRepository;
+use App\Repositories\FiliereRepository;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Etudiant;
+use App\Models\Filiere;
 
-class UserController extends Controller
+class EtudiantController extends Controller
 {
+    /**
+     * The EtudiantRepository instance.
+     *
+     * @var App\Repositories\EtudiantRepository
+     */ 
+    protected $etudiant_gestion;
+
+    /**
+     * The FiliereRepository instance.
+     *
+     * @var App\Repositories\FiliereRepository
+     *
+     */
+    protected $filiere_gestion;
+
+    public function __construct(EtudiantRepository $etudiant_gestion, FiliereRepository $filiere_gestion)
+    {
+        $this->etudiant_gestion = $etudiant_gestion;
+        $this->filiere_gestion = $filiere_gestion;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +40,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return User::get();
+        return $this->etudiant_gestion->index();
     }
 
     /**
@@ -38,7 +61,10 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $etudiant = $this->etudiant_gestion->store($request->all());
+
+        return redirect()->route('api.etudiant.show', [$etudiant->id]);
     }
 
     /**
@@ -49,7 +75,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $etudiant = $this->etudiant_gestion->getCvsEtudiant($id);
+        return $etudiant;
     }
 
     /**
@@ -72,7 +99,9 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $etudiant = $this->etudiant_gestion->update($request->all(), $id);
+
+        return redirect()->route('api.etudiant.show', array($etudiant->id));
     }
 
     /**
@@ -83,6 +112,12 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return $this->etudiant_gestion->destroy($id);
+
+    }
+
+    public function etudiantsfiliere($id)
+    {
+        return $this->etudiant_gestion->index($id);
     }
 }

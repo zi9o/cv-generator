@@ -1,14 +1,32 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Repositories\EtablissementRepository;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class CompetenceController extends Controller
+class EtablissementController extends Controller
 {
+    /**
+     * The etablissementRepository instance.
+     *
+     * @var App\Repositories\etablissementRepository
+     */ 
+    protected $etablissement_gestion;
+
+    /*
+     * Create a new etablissementController instance.
+     *
+     * @param  App\Repositories\etablissementRepository $etablissement_gestion
+     * @return void
+     */
+    public function __construct(EtablissementRepository $etablissement_gestion)
+    {
+        $this->etablissement_gestion = $etablissement_gestion;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +34,7 @@ class CompetenceController extends Controller
      */
     public function index()
     {
-        //
+        return $this->etablissement_gestion->all();
     }
 
     /**
@@ -37,7 +55,8 @@ class CompetenceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $etablissement = $this->etablissement_gestion->store($request->all());
+        return $etablissement;
     }
 
     /**
@@ -48,7 +67,7 @@ class CompetenceController extends Controller
      */
     public function show($id)
     {
-        //
+        return $this->etablissement_gestion->getById($id);
     }
 
     /**
@@ -71,7 +90,8 @@ class CompetenceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $etablissement = $this->etablissement_gestion->update($request->all(), $id);
+        return $etablissement;
     }
 
     /**
@@ -82,6 +102,6 @@ class CompetenceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return $this->etablissement_gestion->destroy($id);
     }
 }
