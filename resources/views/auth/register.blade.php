@@ -1,4 +1,4 @@
-@extends('home.template')
+@extends('auth.template')
 
 @section('contenu')
 		<div class=" card-box">
@@ -7,7 +7,7 @@
 				</div>
 
 				<div class="panel-body">
-					<form class="form-horizontal m-t-20" action="index.html">
+					<form class="form-horizontal m-t-20" action="register" method="post">
 
 						<div class="form-group ">
 							<div class="col-xs-12">
@@ -24,6 +24,12 @@
 						<div class="form-group">
 							<div class="col-xs-12">
 								<input class="form-control" type="password" required="" placeholder="Password">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-xs-12">
+								<input class="form-control" type="password_confirmation" required="" placeholder="Password Confirm">
 							</div>
 						</div>
 

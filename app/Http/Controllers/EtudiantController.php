@@ -4,132 +4,159 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Repositories\EtudiantRepository;
-use App\Repositories\FiliereRepository;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\Cv;
+use App\Models\Competence;
+use App\Models\Formation;
+use App\Models\Experience;
+use App\Models\Loisir;
+use App\Models\Langue;
+use App\Models\Etablissement;
 use App\Models\Etudiant;
-use App\Models\Filiere;
 
-class EtudiantController extends Controller
+class etudiantCvController extends Controller
 {
-    /**
-     * The EtudiantRepository instance.
-     *
-     * @var App\Repositories\EtudiantRepository
-     */ 
-    protected $etudiant_gestion;
-
-    /**
-     * The FiliereRepository instance.
-     *
-     * @var App\Repositories\FiliereRepository
-     *
-     */
-    protected $filiere_gestion;
-
-    public function __construct(EtudiantRepository $etudiant_gestion, FiliereRepository $filiere_gestion)
-    {
-        $this->etudiant_gestion = $etudiant_gestion;
-        $this->filiere_gestion = $filiere_gestion;
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        return $this->etudiant_gestion->index();
+        $cvs = Cv::get();
+        $etudiants = Etudiant::get();       
+        return view('etudiant-cv.index', compact('etudiants'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-
-        Etudiant::create(
-            array (
-                        'cne' => Input::get('cne'),
-                        'email' => Input::get('email'),
-                        'nom' => Input::get('nom'),
-                        'prenom' => Input::get('prenom'),
-                        'dateNaissance' => Input::get('dateNaissance'),
-                        'photo' => Input::get('photo'),
-                        'telephone' => Input::get('telephone'),
-                        'situation' => Input::get('situation'),
-                        'filiere_id' => Input::get('filiere_id')
-                  )
-        );
-    
-        return array('success' => true);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $etudiant = $this->etudiant_gestion->getCvsEtudiant($id);
-        return $etudiant;
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        $etudiants = Etudiant::get();
+        //return $etudiants;
+    	return view('etudiant-cv.create');
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    // public function store(Request $request)
+    // {
+    //     // validation 
+
+    //     $cv = new Cv ();
+    //     $cv->lienVideo = '';
+    //     $cv->etudiant_id = 1;
+    //     $cv->nom = "cv1" ;
+    //     $cv->save();
+    //     //basic information 
+
+    //      $etudiant = new Etudiant() ;
+          
+
+    //      $etudiant->update();
+
+    //     //formation
+
+    //      $etablissement = new Etablissement();
+
+    //       $etablissement->code = "ENSAT";
+    //       $etablissement->designation = "ecole nationale des sciences appliquées";
+    //       $etablissement->ville = "Tanger";
+    //       $etablissement->created_at = date("F j, Y, g:i a");
+    //       $etablissement->updated_at = date("F j, Y, g:i a");
+
+         
+    //          $formation = new Formation();
+    //          $formation->intitule = "Bac";
+    //          $formation->diplome = "Bac";
+    //          $formation->date_debut = "2016-02-02";
+    //          $formation->date_fin = "2015-02-02";
+    //          $formation->etablissement_id = 4 ;
+    //          $formation->cv_id = 6 ;
+    //          $formation->created_at = date("F j, Y, g:i a");
+    //          $formation->updated_at = date("F j, Y, g:i a");
+    //          $formation->save() ;
+         
+         
+    //     //experiences
+    //          $experience = new Experience();
+    //          $experience->intitule = "Stage fin d'études";
+    //          $experience->description = "projet de fin d'études";
+    //          $experience->organisation = "sebn";
+    //          $experience->ville = "rabat";
+    //          $experience->date_debut = "2016-02-02";
+    //          $experience->date_fin = "2016-02-02";
+    //          $experience->cv_id = 6;
+    //          $experience->created_at = date("F j, Y, g:i a");
+    //          $experience->updated_at = date("F j, Y, g:i a");
+    //          $experience->save() ;
+        
+    //     //competences 
+    //          $competence = new Competence();
+    //          $competence->intitule = "L'analyse";
+    //          $competence->niveau = 4
+    //          $competence->cv_id = 6;
+    //          $competence->created_at = date("F j, Y, g:i a");
+    //          $competence->updated_at = date("F j, Y, g:i a");
+    //          $competence->save() ;
+
+    //     //langues
+
+    //          $langue = new Langue();
+    //          $langue->intitule = "francais";
+    //          $langue->niveau = 3;
+    //          $langue->cv_id = 6;
+    //          $langue->created_at = date("F j, Y, g:i a");
+    //          $langue->updated_at = date("F j, Y, g:i a");
+    //          $langue->save() ;
+
+    //     //loisirs
+
+    //      $loisir = new Loisir();
+    //      $loisir->description = "Président du club logistique";
+    //      $loisir->cv_id = 6;
+    //      $loisir->created_at = date("F j, Y, g:i a");
+    //      $loisir->updated_at = date("F j, Y, g:i a");
+    //      $loisir->save();
+   
+    // }
+
+    public function show()
     {
-        //
+        $etudiants = Etudiant::get();       
+        return view('etudiant-cv.show', compact('etudiants'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        Etudiant::destroy($id);
-        return array('success' => true);
 
+    // public function view($id)
+    // {
+    //     $var = Cv::find($id);  
+
+    //     if (empty($var)) {
+    //         return array('cv' => array());
+    //     }
+    //     $cv = array ('cv' => array ( 
+    //                                 "id"=>$var->id,
+    //                                 "lienVideo"=>$var->lienVideo,
+    //                                 "etudiant"=>$var->etudiant,
+    //                                 "created_at"=>$var->created_at,
+    //                                 "updated_at"=>$var->updated_at,
+    //                                 "loisirs" =>$var->loisirs,
+    //                                 "competences" =>$var->competences,
+    //                                 "formations" =>$var->formations,
+    //                                 "langues" =>$var->langues,
+    //                                 "loisirs" =>$var->loisirs,
+    //                               )
+    //                 );
+
+    //     return $cv;
+    // }
+
+    public function view()
+    {
+        
+        return view('etudiant-cv.view');
     }
 
-    public function etudiantsfiliere($id)
-    {
-        return $this->etudiant_gestion->index($id);
-    }
+
+
+    
 }

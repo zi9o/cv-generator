@@ -1,23 +1,23 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Repositories\CvRepository;
-use App\Repositories\FormationRepository;
-use App\Repositories\EtablissementRepository;
 use Illuminate\Http\Request;
-
+use App\Repositories\CvRepository;
+use App\Repositories\EtudiantRepository;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\Formation;
-class FormationController extends Controller
+use App\Models\Cv;
+use App\Models\Etudiant;
+
+class CvController extends Controller
 {
     /**
      * The CvRepository instance.
      *
      * @var App\Repositories\CvRepository
      */ 
-    protected $formation_gestion;
+    protected $cv_gestion;
 
     /**
      * The EtudiantRepository instance.
@@ -25,31 +25,40 @@ class FormationController extends Controller
      * @var App\Repositories\EtudiantRepository
      *
      */
-    protected $cv_gestion;
+    protected $Etudiant_gestion;
 
     
     /*
      * Create a new CvController instance.
      *
-     * @param  App\Repositories\CvRepository $formation_gestion
-     * @param  App\Repositories\EtudiantRepository $cv_gestion
+     * @param  App\Repositories\CvRepository $cv_gestion
+     * @param  App\Repositories\EtudiantRepository $etudiant_gestion
      * @return void
      */
-    public function __construct(FormationRepository $formation_gestion, CvRepository $cv_gestion)
+    public function __construct(CvRepository $cv_gestion, EtudiantRepository $etudiant_gestion)
     {
-        $this->formation_gestion = $formation_gestion;
         $this->cv_gestion = $cv_gestion;
+        $this->etudiant_gestion = $etudiant_gestion;
     }
 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     *
      */
     public function index()
     {
-        $cvs = $this->formation_gestion->index(3); 
-        return $cvs;
+        $cvs = $this->cv_gestion->index(); 
+        
+       return $cvs;
+    }
+
+    public function cvsetudiant($id)
+    {
+        $cvs = $this->cv_gestion->index($id); 
+        
+       return $cvs;
     }
 
     /**
@@ -59,7 +68,7 @@ class FormationController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -70,9 +79,9 @@ class FormationController extends Controller
      */
     public function store(Request $request)
     {
-        $formation = $this->formation_gestion->store($request->all());
+        $cv = $this->cv_gestion->store($request->all());
 
-        return $formation;
+        return redirect()->route('api.etudiant.cv.show', [$cv->id]);
     }
 
     /**
@@ -83,7 +92,8 @@ class FormationController extends Controller
      */
     public function show($id)
     {
-        return $this->formation_gestion->get($id);
+        $cv = $this->cv_gestion->getcvetudiant($id);
+        return $cv;
     }
 
     /**
@@ -106,9 +116,8 @@ class FormationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $formation = $this->formation_gestion->update($request->all(), $id);
-
-        return $formation;
+        $cv = $this->cv_gestion->update($request->all(), $id);
+        return redirect()->route('api.etudiant.cv.show', [$cv->id]);
     }
 
     /**
@@ -119,6 +128,7 @@ class FormationController extends Controller
      */
     public function destroy($id)
     {
-        return $this->formation_gestion->destroy($id);
+        
+        return $this->cv_gestion->destroy($id);
     }
 }

@@ -1,30 +1,44 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Repositories\CvRepository;
+use App\Repositories\FormationRepository;
 use App\Repositories\EtablissementRepository;
 use Illuminate\Http\Request;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
-class EtablissementController extends Controller
+use App\Models\Formation;
+class FormationController extends Controller
 {
     /**
-     * The etablissementRepository instance.
+     * The CvRepository instance.
      *
-     * @var App\Repositories\etablissementRepository
+     * @var App\Repositories\CvRepository
      */ 
-    protected $etablissement_gestion;
+    protected $formation_gestion;
 
-    /*
-     * Create a new etablissementController instance.
+    /**
+     * The EtudiantRepository instance.
      *
-     * @param  App\Repositories\etablissementRepository $etablissement_gestion
+     * @var App\Repositories\EtudiantRepository
+     *
+     */
+    protected $cv_gestion;
+
+    
+    /*
+     * Create a new CvController instance.
+     *
+     * @param  App\Repositories\CvRepository $formation_gestion
+     * @param  App\Repositories\EtudiantRepository $cv_gestion
      * @return void
      */
-    public function __construct(EtablissementRepository $etablissement_gestion)
+    public function __construct(FormationRepository $formation_gestion, CvRepository $cv_gestion)
     {
-        $this->etablissement_gestion = $etablissement_gestion;
+        $this->formation_gestion = $formation_gestion;
+        $this->cv_gestion = $cv_gestion;
     }
 
     /**
@@ -34,7 +48,8 @@ class EtablissementController extends Controller
      */
     public function index()
     {
-        return $this->etablissement_gestion->all();
+        $cvs = $this->formation_gestion->index(3); 
+        return $cvs;
     }
 
     /**
@@ -55,8 +70,9 @@ class EtablissementController extends Controller
      */
     public function store(Request $request)
     {
-        $etablissement = $this->etablissement_gestion->store($request->all());
-        return $etablissement;
+        $formation = $this->formation_gestion->store($request->all());
+
+        return redirect()->route('api.etudiant.cv.show', [$formation->cv_id]);
     }
 
     /**
@@ -67,7 +83,7 @@ class EtablissementController extends Controller
      */
     public function show($id)
     {
-        return $this->etablissement_gestion->getById($id);
+        return $this->formation_gestion->get($id);
     }
 
     /**
@@ -90,8 +106,9 @@ class EtablissementController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $etablissement = $this->etablissement_gestion->update($request->all(), $id);
-        return $etablissement;
+        $formation = $this->formation_gestion->update($request->all(), $id);
+
+        return redirect()->route('api.etudiant.cv.show', [$formation->cv_id]);
     }
 
     /**
@@ -102,6 +119,7 @@ class EtablissementController extends Controller
      */
     public function destroy($id)
     {
-        return $this->etablissement_gestion->destroy($id);
+        $formation = $this->formation_gestion->destroy($id);
+        return redirect()->route('api.etudiant.cv.show', [$formation->cv_id]);
     }
 }

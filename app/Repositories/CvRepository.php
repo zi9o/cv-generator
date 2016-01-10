@@ -43,12 +43,20 @@ class CvRepository extends BaseRepository {
      */
     public function save($inputs)
     {
-        $this->model->nom_cv = $inputs['nomcv'];
-        $this->model->lienVideo = $inputs['lienVideo'];
-        $this->etudiant = Etudiant::find(intval($inputs['etudiant']));
-        if($this->etudiant != null) {
-            $this->model->etudiant_id = $this->etudiant->id;
-        } 
+        if (isset($inputs['nomcv'])) {
+            $this->model->nom_cv = $inputs['nomcv'];
+        }
+        if (isset($inputs['lienVideo'])) {
+            $this->model->lienVideo = $inputs['lienVideo'];
+        }
+        if (isset($inputs['etudiant'])) {
+            $this->etudiant = Etudiant::find(intval($inputs['etudiant']));
+            if($this->etudiant != null) {
+                $this->model->etudiant_id = $this->etudiant->id;
+            } 
+        }
+        
+        
         
         $this->model->save();
 
@@ -142,40 +150,7 @@ class CvRepository extends BaseRepository {
         return $cvs;
     }
 
-    public function getCvsEtudiant($id)
-    {
-        $var = Etudiant::find($id);  
-
-        if (empty($var)) {
-            return array();
-        }
-        $query = $this->model
-                ->select('cvs.id')->distinct()
-                ->join('etudiants', 'etudiants.id', '=', 'cvs.etudiant_id')
-                ->where('etudiant_id', $var->id)
-                ->paginate(5);
-        $cv = array();
-        foreach ($query as $value) {
-            $cv[] = $this->get($value->id);
-        }
-        $this->filiere = Filiere::find($var->filiere_id);
-        $etudiant = [
-                    "id"=>$var->id,
-                    "cne"=>$var->cne,
-                    "nom"=>$var->nom,
-                    "prenom"=>$var->prenom,
-                    "dateNaissance"=>$var->dateNaissance,
-                    "photo"=>$var->photo,
-                    "telephone"=>$var->telephone,
-                    "situation"=>$var->situation,
-                    "adresse"=>$var->adresse,
-                    "filiere"=>$this->filiere,
-                    "cv" => $cv
-        ];
-
-        return ["etudiant" => $etudiant];
-    }
-
+    
     /**
      * Get cv collection.
      *

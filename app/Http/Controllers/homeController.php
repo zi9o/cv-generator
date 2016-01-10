@@ -11,7 +11,7 @@ class homeController extends Controller
 {
     public function index()
     {
-    	return view('home.login');
+    	return view('home.index');
     }
 
     public function register()

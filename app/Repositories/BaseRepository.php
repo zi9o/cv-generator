@@ -1,5 +1,7 @@
 <?php namespace App\Repositories;
 
+use DB;
+use App\Models\Cv;
 abstract class BaseRepository {
 
 	/**
@@ -51,9 +53,9 @@ abstract class BaseRepository {
 	 */
 	public function destroy($id)
 	{
-		$cv = $this->getById($id);
-		$cv->delete();
-		return $cv;
+		$this->model = $this->getById($id);
+		$this->model->delete();
+		return $this->model ;
 	}
 
 	/**
@@ -75,31 +77,11 @@ abstract class BaseRepository {
      */
 	public function store($inputs)
     {
-        // $cv->created_at = date("F j, Y, g:i a");
+        // $model->created_at = date("F j, Y, g:i a");
 
-        $model = $this->save($inputs);
+        $this->model = $this->save($inputs);
 
-
-        // // Tags gestion
-        // if (array_key_exists('tags', $inputs) && $inputs['tags'] != '') {
-
-        //     $tags = explode(',', $inputs['tags']);
-
-        //     foreach ($tags as $tag) {
-        //         $tag_ref = $this->tag->whereTag($tag)->first();
-        //         if (is_null($tag_ref)) {
-        //             $tag_ref = new $this->tag();
-        //             $tag_ref->tag = $tag;
-        //             $cv->tags()->save($tag_ref);
-        //         } else {
-        //             $cv->tags()->attach($tag_ref->id);
-        //         }
-        //     }
-        // }
-
-        // Maybe purge orphan tags...
-
-        return $model;
+        return $this->model;
     }
 
     /**
@@ -114,29 +96,108 @@ abstract class BaseRepository {
     public function update($inputs, $id)
     {
         $this->model = $this->getById($id);
-        $model = $this->save($inputs);
-
-        // // Tag gestion
-        // $tags_id = [];
-        // if (array_key_exists('tags', $inputs) && $inputs['tags'] != '') {
-
-        //     $tags = explode(',', $inputs['tags']);
-
-        //     foreach ($tags as $tag) {
-        //         $tag_ref = $this->tag->whereTag($tag)->first();
-        //         if (is_null($tag_ref)) {
-        //             $tag_ref = new $this->tag();
-        //             $tag_ref->tag = $tag;
-        //             $tag_ref->save();
-        //         }
-        //         array_push($tags_id, $tag_ref->id);
-        //     }
-        // }
-
-        //$cv->tags()->sync($tags_id);
-
-        return $model;
+        $this->model = $this->save($inputs);
+        return $this->model;
     }
 
+    public function getcvetudiant($id)
+    {
+        $var = Cv::find($id);  
+
+        if (empty($var)) {
+            return array();
+        }
+
+        $e = $var->etudiant;
+
+
+        $cv =  [ 
+                    "id" => $var->id,
+                    "nomcv"=>$var->nom_cv,
+                    "lienVideo"=>$var->lienVideo,
+                    "loisirs" =>$var->loisirs,
+                    "competences" =>$var->competences,
+                    "experiences" =>$var->experiences,
+                    "formations" =>$var->formations,
+                    "langues" =>$var->langues,
+                    "loisirs" =>$var->loisirs,
+                ];
+
+        $etudiant = [
+                    "id"=>$e->id,
+                    "cne"=>$e->cne,
+                    "nom"=>$e->nom,
+                    "prenom"=>$e->prenom,
+                    "dateNaissance"=>$e->dateNaissance,
+                    "photo"=>$e->photo,
+                    "telephone"=>$e->telephone,
+                    "situation"=>$e->situation,
+                    "adresse"=>$e->adresse,
+                    "filiere"=>$e->filiere,
+                    "cv" => $cv
+        ];
+
+        return ["etudiant" => $etudiant];
+    }
+
+    public function getCvsEtudiant($id)
+    {
+        $var = DB::table('etudiants')->where('id', $id)->first();
+
+        if (empty($var)) {
+            return array();
+        }
+
+        $query = DB::table('etudiants')
+            ->join('cvs', 'etudiants.id', '=', 'cvs.etudiant_id')
+            ->where('cvs.etudiant_id', $var->id)
+            ->select('cvs.id')
+            ->get();
+
+        
+        $cv = array();
+        foreach ($query as $value) {
+            $cv[] = $this->getcv($value->id);
+        }
+        $filiere = DB::table('filieres')->where('id', $var->filiere_id)->first();
+        
+        $etudiant = [
+                    "id"=>$var->id,
+                    "cne"=>$var->cne,
+                    "nom"=>$var->nom,
+                    "prenom"=>$var->prenom,
+                    "dateNaissance"=>$var->dateNaissance,
+                    "photo"=>$var->photo,
+                    "telephone"=>$var->telephone,
+                    "situation"=>$var->situation,
+                    "adresse"=>$var->adresse,
+                    "filiere"=>$filiere,
+                    "cv" => $cv
+        ];
+
+        return ["etudiant" => $etudiant];
+    }
+
+    public function getcv($id)
+    {
+        $var = Cv::find($id);  
+
+        if (empty($var)) {
+            return array();
+        }
+
+        $cv = [   
+                    "id"=>$var->id,
+                    "nomcv"=>$var->nom_cv,
+                    "lienVideo"=>$var->lienVideo,
+                    "loisirs" =>$var->loisirs,
+                    "competences" =>$var->competences,
+                    "formations" =>$var->formations,
+                    "langues" =>$var->langues,
+                    "loisirs" =>$var->loisirs,
+             ] ;
+
+        return $cv;
+    }
 
 }

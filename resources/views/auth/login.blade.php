@@ -1,4 +1,4 @@
-@extends('home.template')
+@extends('auth.template')
 
 @section('contenu')
 				
@@ -13,7 +13,7 @@
 			                
 				                <div class="form-group ">
 				                    <div class="col-xs-12">
-				                        <input class="form-control" type="text" required="" placeholder="Username">
+				                        <input class="form-control" type="text" required="" placeholder="E-mail Adress">
 				                    </div>
 				                </div>
 
@@ -43,7 +43,7 @@
 
 				                <div class="form-group m-t-30 m-b-0">
 				                    <div class="col-sm-12">
-				                        <a href="page-recoverpw.html" class="text-dark"><i class="fa fa-lock m-r-5"></i> Forgot your password?</a>
+				                        <a href="password" class="text-dark"><i class="fa fa-lock m-r-5"></i> Forgot your password?</a>
 				                    </div>
 				                </div>
 			            	</form> 			            
